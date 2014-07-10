@@ -1,4 +1,6 @@
-# Mber C++ SDK #
+# ~~Mber C++ SDK~~ #
+
+**This is the README for the original Windows DLL. It's only here for reference. See the top-level directory for the README on the Linux SDK (such as it is).**
 
 ## Building ##
 
