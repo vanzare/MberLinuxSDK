@@ -21,12 +21,15 @@ The actual Mber code is in ```generated``` and ```src```. The rest is due for cl
     make -j
     
 
-##### Building the (broken) test target #####
-Currently, the ```test``` binary cannot find libMber.so when it runs. Not sure why yet.
+##### Building and running the (broken) test target #####
+The ```test``` binary starts running and then fails with a SIGABRT. Needs
+debugging.
 
     make clean
     make -j
     make -j test
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:./cpp/poco-1.5.3-all/lib/Linux/x86_64
+    ./test
     
 
     
