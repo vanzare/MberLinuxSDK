@@ -1,0 +1,36 @@
+/Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/testsuite/obj/Darwin/x86_64/debug_static/RSATest.o /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/testsuite/obj/Darwin/x86_64/release_static/RSATest.o /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/testsuite/obj/Darwin/x86_64/debug_shared/RSATest.o /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/testsuite/obj/Darwin/x86_64/release_shared/RSATest.o: src/RSATest.cpp src/RSATest.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/Crypto.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Foundation.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Config.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Platform.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Platform_POSIX.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Bugcheck.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Types.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/TestCase.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/CppUnit.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/Guards.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/Test.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/CppUnitException.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/TestCaller.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/CppUnit/include/CppUnit/TestSuite.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/RSADigestEngine.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/RSAKey.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/RSAKeyImpl.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/OpenSSLInitializer.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Mutex.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Exception.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/ScopedLock.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Mutex_POSIX.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/RefCountedObject.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/AtomicCounter.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/AutoPtr.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/DigestEngine.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/MD5Engine.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/SHA1Engine.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/CipherFactory.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/Cipher.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Crypto/include/Poco/Crypto/X509Certificate.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/DateTime.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Timestamp.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/Timespan.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4-all/Foundation/include/Poco/SharedPtr.h

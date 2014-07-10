@@ -1,0 +1,57 @@
+Template.o: src/Template.cpp include/Poco/JSON/Template.h \
+  include/Poco/JSON/JSON.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Foundation.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Config.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Platform.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Platform_POSIX.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Alignment.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Bugcheck.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Types.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Dynamic/Var.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Format.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Any.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Exception.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/MetaProgramming.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/SharedPtr.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/AtomicCounter.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Mutex.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/ScopedLock.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Mutex_POSIX.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Dynamic/VarHolder.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/NumberFormatter.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/NumericString.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Buffer.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/FPEnvironment.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/FPEnvironment_C99.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/NumberParser.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/DateTime.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Timestamp.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Timespan.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/LocalDateTime.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/DateTimeFormat.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/DateTimeFormatter.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/DateTimeParser.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/String.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Ascii.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/UnicodeConverter.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/UTFString.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/UTF8String.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Dynamic/VarIterator.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Path.h \
+  include/Poco/JSON/TemplateCache.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Logger.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Channel.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Configurable.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/RefCountedObject.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Message.h \
+  include/Poco/JSON/Query.h include/Poco/JSON/Object.h \
+  include/Poco/JSON/Array.h include/Poco/JSON/Stringifier.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Dynamic/Struct.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/Nullable.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/File.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/File_UNIX.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/FileStream.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/FileStream_POSIX.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/BufferedBidirectionalStreamBuf.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/BufferAllocator.h \
+  /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include/Poco/StreamUtil.h
