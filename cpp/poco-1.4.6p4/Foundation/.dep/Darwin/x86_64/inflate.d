@@ -1,2 +1,0 @@
-/Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/obj/Darwin/x86_64/debug_static/inflate.o /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/obj/Darwin/x86_64/release_static/inflate.o /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/obj/Darwin/x86_64/debug_shared/inflate.o /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/obj/Darwin/x86_64/release_shared/inflate.o: src/inflate.c src/zutil.h src/zlib.h src/zconf.h \
-  src/inftrees.h src/inflate.h src/inffast.h src/inffixed.h
