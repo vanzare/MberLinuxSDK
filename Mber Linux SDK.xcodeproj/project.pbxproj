@@ -9690,6 +9690,7 @@
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib/VC/static",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/**";
 			};
 			name = Debug;
 		};
@@ -9707,6 +9708,7 @@
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib/VC/static",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/**";
 			};
 			name = Release;
 		};
@@ -9729,6 +9731,7 @@
 				53EABE9C196E289100943894 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
