@@ -667,7 +667,9 @@ namespace Mber{
     struct CustomCountField{
         std::string name;				// The name of the custom count field
         long count;				// The value of the custom count field
-        Mber::MberPtr<uint64_t > time;				// The timestamp that the custom count field should be applied to.
+        // TODO: determine correct type
+        Mber::MberPtr<uint64_t> time;				// The timestamp that the custom count field should be applied to.
+//        Mber::MberPtr<UInt64> time;				// The timestamp that the custom count field should be applied to.
     };
     // Entity ID which encapsulates either a uuid or unique name
     struct EntityID{
@@ -1711,7 +1713,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_referringAccount;					// The account which referred this new account
                     Mber::MberPtr<Mber::EntityPointer > m_referrer;					// The account or affiliate which referred this new account
                 public:
-                    Request::Request( std::string username,std::string password,Mber::Region region,Mber::MberPtr<uint64_t > dateOfBirth,Mber::MberPtr<std::string > displayname,Mber::MberPtr<std::string > email,Mber::EntityID sourceApplication,Mber::MberPtr<std::string > sourceReferredUrl,Mber::MberPtr<bool > forcePasswordReset,Mber::MberPtr<std::string > referringAccount,Mber::MberPtr<Mber::EntityPointer > referrer );
+                    Request( std::string username,std::string password,Mber::Region region,Mber::MberPtr<uint64_t > dateOfBirth,Mber::MberPtr<std::string > displayname,Mber::MberPtr<std::string > email,Mber::EntityID sourceApplication,Mber::MberPtr<std::string > sourceReferredUrl,Mber::MberPtr<bool > forcePasswordReset,Mber::MberPtr<std::string > referringAccount,Mber::MberPtr<Mber::EntityPointer > referrer );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1727,7 +1729,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_accountId;					// The account identifier to lookup
                 public:
-                    Request::Request( std::string accountId );
+                    Request( std::string accountId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1746,7 +1748,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The profile identifier to lookup
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1769,7 +1771,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_steamId;					// The user&#39;s Steam id. Will only update if the token has private data permissions.
                     Mber::MberPtr<bool > m_preserveCurrentSteamId;					// A flag to determine whether to save the user&#39;s current steam id, if none is provided. If false, and no steam id is provided, the current steam account will be unlinked.
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<Mber::Region > region,Mber::MberPtr<uint64_t > dateOfBirth,Mber::MberPtr<std::string > displayname,Mber::MberPtr<std::string > email,Mber::MberPtr<std::string > steamId,Mber::MberPtr<bool > preserveCurrentSteamId );
+                    Request( std::string profileId,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<Mber::Region > region,Mber::MberPtr<uint64_t > dateOfBirth,Mber::MberPtr<std::string > displayname,Mber::MberPtr<std::string > email,Mber::MberPtr<std::string > steamId,Mber::MberPtr<bool > preserveCurrentSteamId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1785,7 +1787,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The profile identifier to update
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1804,7 +1806,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_userName;					// The user name to resolve
                     Mber::MberPtr<std::string > m_email;					// The email to resolve
                 public:
-                    Request::Request( Mber::MberPtr<std::string > displayName,Mber::MberPtr<std::string > userName,Mber::MberPtr<std::string > email );
+                    Request( Mber::MberPtr<std::string > displayName,Mber::MberPtr<std::string > userName,Mber::MberPtr<std::string > email );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1822,7 +1824,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The id of the profile to enable.
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1837,7 +1839,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The id of the profile to disable.
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1856,7 +1858,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::Query m_query;					// The structured search query to use
                 public:
-                    Request::Request( Mber::Query query );
+                    Request( Mber::Query query );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1876,7 +1878,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The ID of the profile to get an address for
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1899,7 +1901,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_stateOrProvince;					// The state or province
                     Mber::MberPtr<std::string > m_country;					// The country in ISO 3166-1 alpha-2 format
                 public:
-                    Request::Request( std::string profileId,Mber::ProfileAddressType addressType,Mber::MberPtr<std::string > houseNumberOrName,Mber::MberPtr<std::string > street,Mber::MberPtr<std::string > city,Mber::MberPtr<std::string > postalCode,Mber::MberPtr<std::string > stateOrProvince,Mber::MberPtr<std::string > country );
+                    Request( std::string profileId,Mber::ProfileAddressType addressType,Mber::MberPtr<std::string > houseNumberOrName,Mber::MberPtr<std::string > street,Mber::MberPtr<std::string > city,Mber::MberPtr<std::string > postalCode,Mber::MberPtr<std::string > stateOrProvince,Mber::MberPtr<std::string > country );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1916,7 +1918,7 @@ namespace Mber{
                     std::string m_profileId;					// The ID of the profile to update
                     Mber::ProfileAddressType m_addressType;					// The type of address e.g. billing, shipping, etc.
                 public:
-                    Request::Request( std::string profileId,Mber::ProfileAddressType addressType );
+                    Request( std::string profileId,Mber::ProfileAddressType addressType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1937,7 +1939,7 @@ namespace Mber{
                     std::string m_profileId;					// The ID of the profile to create the persona on
                     std::string m_displayname;					// The visible name of the persona
                 public:
-                    Request::Request( std::string profileId,std::string displayname );
+                    Request( std::string profileId,std::string displayname );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1954,7 +1956,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_personaId;					// The ID of the persona to read
                 public:
-                    Request::Request( std::string personaId );
+                    Request( std::string personaId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1975,7 +1977,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_page;					// The page in the results to return. Pages start at 1.
                     Mber::MberPtr<uint64_t > m_maxResults;					// Can be used to specify the maximum number of results to return.  Will be limited to the global maximum number of results by default and may never return more than this.
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
+                    Request( std::string profileId,Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -1992,7 +1994,7 @@ namespace Mber{
                     std::string m_personaId;					// The ID of the persona to update
                     Mber::MberPtr<std::string > m_displayname;					// The visible name of the persona
                 public:
-                    Request::Request( std::string personaId,Mber::MberPtr<std::string > displayname );
+                    Request( std::string personaId,Mber::MberPtr<std::string > displayname );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2008,7 +2010,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_personaId;					// The ID of the persona to delete
                 public:
-                    Request::Request( std::string personaId );
+                    Request( std::string personaId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2028,7 +2030,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::Query m_query;					// The structured search query to use
                 public:
-                    Request::Request( Mber::Query query );
+                    Request( Mber::Query query );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2046,7 +2048,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2067,7 +2069,7 @@ namespace Mber{
                     std::string m_email;					// The email address of the account whose password is forgotten
                     Mber::MberPtr<Mber::EntityID > m_applicationId;					// The application in which the forgot password is being requested. This determines how messaging is performed. Defaults to the root application
                 public:
-                    Request::Request( std::string username,std::string email,Mber::MberPtr<Mber::EntityID > applicationId );
+                    Request( std::string username,std::string email,Mber::MberPtr<Mber::EntityID > applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2084,7 +2086,7 @@ namespace Mber{
                     std::string m_tokenId;					// The token to redeem to set the password
                     std::string m_password;					// The new password to set
                 public:
-                    Request::Request( std::string tokenId,std::string password );
+                    Request( std::string tokenId,std::string password );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2103,7 +2105,7 @@ namespace Mber{
                     std::string m_profileId;					// The profile identifier to invoke a password reset on
                     Mber::MberPtr<std::string > m_applicationContext;					// The application context in which the reset is occurring. This will determine how messaging is performed. If unspecified, defaults to the token application
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<std::string > applicationContext );
+                    Request( std::string profileId,Mber::MberPtr<std::string > applicationContext );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2118,7 +2120,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The profile identifier to undo a password reset on
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2142,7 +2144,7 @@ namespace Mber{
                     std::string m_tokenId;					// The password reset token to use when setting the password
                     std::string m_password;					// The new password to use
                 public:
-                    Request::Request( std::string tokenId,std::string password );
+                    Request( std::string tokenId,std::string password );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2163,7 +2165,7 @@ namespace Mber{
                     Mber::EntityID m_applicationId;					// The id of the application to index profiles in.
                     Mber::MberPtr<bool > m_deleteIndex;					// Flag to determine if the index should be deleted.
                 public:
-                    Request::Request( Mber::EventType eventType,Mber::EntityID applicationId,Mber::MberPtr<bool > deleteIndex );
+                    Request( Mber::EventType eventType,Mber::EntityID applicationId,Mber::MberPtr<bool > deleteIndex );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2183,7 +2185,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::Query m_query;					// The query to execute
                 public:
-                    Request::Request( Mber::Query query );
+                    Request( Mber::Query query );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2203,7 +2205,7 @@ namespace Mber{
                     std::string m_email;					// The email address tied to the account to upgrade
                     Mber::MberPtr<Mber::EntityID > m_applicationId;					// The application context in which the Anonymous Upgrade email template is located. Will default to Mber if not provided.
                 public:
-                    Request::Request( std::string email,Mber::MberPtr<Mber::EntityID > applicationId );
+                    Request( std::string email,Mber::MberPtr<Mber::EntityID > applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2223,7 +2225,7 @@ namespace Mber{
                     std::string m_email;					// The email address tied to the account to retrieve.
                     Mber::MberPtr<Mber::EntityID > m_applicationId;					// The application context in which the Forgot Username email template is located. Will default to Mber if not provided.
                 public:
-                    Request::Request( std::string email,Mber::MberPtr<Mber::EntityID > applicationId );
+                    Request( std::string email,Mber::MberPtr<Mber::EntityID > applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2244,7 +2246,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_clientType;					// The client to boot the profile from
                     Mber::MberPtr<bool > m_includeChildApps;					// Boot the profile from child applications as well
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<std::string > clientType,Mber::MberPtr<bool > includeChildApps );
+                    Request( std::string profileId,Mber::MberPtr<std::string > clientType,Mber::MberPtr<bool > includeChildApps );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2265,7 +2267,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_clientType;					// The client to ban the profile from
                     Mber::MberPtr<bool > m_includeChildApps;					// Ban the profile from child applications as well
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<std::string > clientType,Mber::MberPtr<bool > includeChildApps );
+                    Request( std::string profileId,Mber::MberPtr<std::string > clientType,Mber::MberPtr<bool > includeChildApps );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2283,7 +2285,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_clientType;					// The client to remove the banned profile from
                     Mber::MberPtr<bool > m_includeChildApps;					// Remove the ban on the profile from child applications as well
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<std::string > clientType,Mber::MberPtr<bool > includeChildApps );
+                    Request( std::string profileId,Mber::MberPtr<std::string > clientType,Mber::MberPtr<bool > includeChildApps );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2304,7 +2306,7 @@ namespace Mber{
                     std::string m_tokenId;					// The token to be fetched
                     Mber::TokenType m_tokenType;					// The type of token
                 public:
-                    Request::Request( std::string tokenId,Mber::TokenType tokenType );
+                    Request( std::string tokenId,Mber::TokenType tokenType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2322,7 +2324,7 @@ namespace Mber{
                     Mber::EntityID m_profileId;					// The profile whose tokens to look for
                     Mber::MberPtr<std::list<Mber::TokenType> > m_tokenTypes;					// The types of tokens to list
                 public:
-                    Request::Request( Mber::EntityID profileId,Mber::MberPtr<std::list<Mber::TokenType> > tokenTypes );
+                    Request( Mber::EntityID profileId,Mber::MberPtr<std::list<Mber::TokenType> > tokenTypes );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2338,7 +2340,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_tokenId;					// The token to be deleted
                 public:
-                    Request::Request( std::string tokenId );
+                    Request( std::string tokenId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2367,7 +2369,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_maxPersonas;					// The maximum number of personas a profile can have in this application
                     Mber::MberPtr<bool > m_uniquePersonas;					// Controls whether persona names have to be unique within this application. Defaults to true.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > alias,Mber::EntityID parent,Mber::MberPtr<std::string > redirectUri,Mber::MberPtr<std::string > version,Mber::MberPtr<uint64_t > maxPersonas,Mber::MberPtr<bool > uniquePersonas );
+                    Request( std::string name,Mber::MberPtr<std::string > alias,Mber::EntityID parent,Mber::MberPtr<std::string > redirectUri,Mber::MberPtr<std::string > version,Mber::MberPtr<uint64_t > maxPersonas,Mber::MberPtr<bool > uniquePersonas );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2388,7 +2390,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_maxPersonas;					// The maximum number of personas a profile can have in this application
                     Mber::MberPtr<bool > m_uniquePersonas;					// Controls whether persona names have to be unique within this application. Defaults to true.
                 public:
-                    Request::Request( Mber::EntityID applicationId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::string > redirectUri,Mber::MberPtr<std::string > version,Mber::MberPtr<uint64_t > maxPersonas,Mber::MberPtr<bool > uniquePersonas );
+                    Request( Mber::EntityID applicationId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::string > redirectUri,Mber::MberPtr<std::string > version,Mber::MberPtr<uint64_t > maxPersonas,Mber::MberPtr<bool > uniquePersonas );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2404,7 +2406,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<Mber::ApplicationStatus > m_status;					// The status of the applications to list.  If not provided only Activated applications will be returned.
                 public:
-                    Request::Request( Mber::MberPtr<Mber::ApplicationStatus > status );
+                    Request( Mber::MberPtr<Mber::ApplicationStatus > status );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2420,7 +2422,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The id of the application to delete
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2436,7 +2438,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The id of the application to read
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2456,7 +2458,7 @@ namespace Mber{
                     Mber::EntityID m_applicationId;					// The id of the application
                     Mber::ApplicationStatus m_status;					// The new status of the application.  Should be Disabled or Activated.  Applications cannot be deleted through this API
                 public:
-                    Request::Request( Mber::EntityID parent,Mber::EntityID applicationId,Mber::ApplicationStatus status );
+                    Request( Mber::EntityID parent,Mber::EntityID applicationId,Mber::ApplicationStatus status );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2492,7 +2494,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_password;					// Used if attempting to create an authorization based on username/password
                     Mber::MberPtr<std::string > m_scope;					// space delimited case sensitive strings; requested
                 public:
-                    Request::Request( Mber::EntityID client_id,Mber::MberPtr<std::string > redirect_uri,Mber::MberPtr<std::string > refresh_token,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > scope );
+                    Request( Mber::EntityID client_id,Mber::MberPtr<std::string > redirect_uri,Mber::MberPtr<std::string > refresh_token,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > scope );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2530,7 +2532,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_redirect_uri;					// required if grant_type=authorization_code; Validated against redirect_uri used for auth code
                     Mber::MberPtr<std::string > m_scope;					// space delimited case sensitive strings; requested
                 public:
-                    Request::Request( std::string grant_type,Mber::EntityID client_id,Mber::MberPtr<std::string > client_secret,Mber::MberPtr<std::string > code,Mber::MberPtr<std::string > refresh_token,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > redirect_uri,Mber::MberPtr<std::string > scope );
+                    Request( std::string grant_type,Mber::EntityID client_id,Mber::MberPtr<std::string > client_secret,Mber::MberPtr<std::string > code,Mber::MberPtr<std::string > refresh_token,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > redirect_uri,Mber::MberPtr<std::string > scope );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2561,7 +2563,7 @@ namespace Mber{
                     Mber::MberPtr<int > m_ttl;					// The desired lifetime in seconds of the client token.  The token will continue to live as long as it is used within this TTL, so the TTL should be short.
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_mustHaveOne;					// A list of required entities that the owner of the authorization token must have in order to obtain the client token.  Possible entity pointer types are currently supported limited to ProfileGroups and digital goods.
                 public:
-                    Request::Request( std::string authorization_token,std::string clientType,Mber::MberPtr<int > ttl,Mber::MberPtr<std::list<Mber::EntityPointer> > mustHaveOne );
+                    Request( std::string authorization_token,std::string clientType,Mber::MberPtr<int > ttl,Mber::MberPtr<std::list<Mber::EntityPointer> > mustHaveOne );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2587,7 +2589,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_alias;					// The optional alias of the profile group, must be unique within the application.
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_members;					// The members that should be included in this group on creation.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::list<Mber::EntityPointer> > members );
+                    Request( std::string name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::list<Mber::EntityPointer> > members );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2604,7 +2606,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_groupId;					// The identifier of the group to get details for.
                 public:
-                    Request::Request( Mber::EntityID groupId );
+                    Request( Mber::EntityID groupId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2620,7 +2622,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2641,7 +2643,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_membersToRemove;					// The profile(s) to be removed from the group.
                     Mber::MberPtr<Mber::ProfileGroupStatus > m_status;					// A new status to apply to the group.
                 public:
-                    Request::Request( Mber::EntityID groupId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::list<Mber::EntityPointer> > membersToAdd,Mber::MberPtr<std::list<Mber::EntityPointer> > membersToRemove,Mber::MberPtr<Mber::ProfileGroupStatus > status );
+                    Request( Mber::EntityID groupId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::list<Mber::EntityPointer> > membersToAdd,Mber::MberPtr<std::list<Mber::EntityPointer> > membersToRemove,Mber::MberPtr<Mber::ProfileGroupStatus > status );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2657,7 +2659,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_groupId;					// The id of the profile group to delete.
                 public:
-                    Request::Request( Mber::EntityID groupId );
+                    Request( Mber::EntityID groupId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2677,7 +2679,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_profileId;					// The id of the profile to list groups it belongs to.
                 public:
-                    Request::Request( std::string profileId );
+                    Request( std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2697,7 +2699,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::Query m_query;					// The structured query to execute
                 public:
-                    Request::Request( Mber::Query query );
+                    Request( Mber::Query query );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2727,7 +2729,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment> > m_automaticAssignments;					// Roles that become automatically granted in the context of a created object
                     Mber::MberPtr<bool > m_negative;					// Flag indicating if this role negates its defined permissions
                 public:
-                    Request::Request( std::string name,Mber::EntityPointer parent,bool automatic,bool cascading,Mber::MberPtr<std::list<Mber::Permission> > permissions,Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment> > automaticAssignments,Mber::MberPtr<bool > negative );
+                    Request( std::string name,Mber::EntityPointer parent,bool automatic,bool cascading,Mber::MberPtr<std::list<Mber::Permission> > permissions,Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment> > automaticAssignments,Mber::MberPtr<bool > negative );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2744,7 +2746,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_roleId;					// The id of the role
                 public:
-                    Request::Request( Mber::EntityID roleId );
+                    Request( Mber::EntityID roleId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2762,7 +2764,7 @@ namespace Mber{
                     std::string m_parentId;					// The parent of the role
                     Mber::EntityType m_parentType;					// The type of the parent
                 public:
-                    Request::Request( std::string parentId,Mber::EntityType parentType );
+                    Request( std::string parentId,Mber::EntityType parentType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2784,7 +2786,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment> > m_automaticAssignments;					// Roles that become automatically granted in the context of a created object
                     Mber::MberPtr<bool > m_negative;					// Flag indicating if this role negates its defined permissions
                 public:
-                    Request::Request( Mber::EntityID roleId,std::string name,bool active,bool automatic,bool cascading,Mber::MberPtr<std::list<Mber::Permission> > permissions,Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment> > automaticAssignments,Mber::MberPtr<bool > negative );
+                    Request( Mber::EntityID roleId,std::string name,bool active,bool automatic,bool cascading,Mber::MberPtr<std::list<Mber::Permission> > permissions,Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment> > automaticAssignments,Mber::MberPtr<bool > negative );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2800,7 +2802,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_roleId;					// The id of the role
                 public:
-                    Request::Request( Mber::EntityID roleId );
+                    Request( Mber::EntityID roleId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2822,7 +2824,7 @@ namespace Mber{
                     Mber::EntityPointer m_context;					// The context in which the permissions of the role apply
                     Mber::EntityPointer m_recipient;					// The entity to receive the role
                 public:
-                    Request::Request( Mber::EntityID roleId,Mber::MberPtr<std::string > profileId,Mber::EntityPointer context,Mber::EntityPointer recipient );
+                    Request( Mber::EntityID roleId,Mber::MberPtr<std::string > profileId,Mber::EntityPointer context,Mber::EntityPointer recipient );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2841,7 +2843,7 @@ namespace Mber{
                     Mber::EntityPointer m_context;					// The context in which to unassign the role
                     Mber::EntityPointer m_recipient;					// The target entity to remove the role from
                 public:
-                    Request::Request( Mber::EntityID roleId,Mber::MberPtr<std::string > profileId,Mber::EntityPointer context,Mber::EntityPointer recipient );
+                    Request( Mber::EntityID roleId,Mber::MberPtr<std::string > profileId,Mber::EntityPointer context,Mber::EntityPointer recipient );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2858,7 +2860,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_roleId;					// The id of the role to find profiles for
                 public:
-                    Request::Request( Mber::EntityID roleId );
+                    Request( Mber::EntityID roleId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2880,7 +2882,7 @@ namespace Mber{
                     std::string m_entityId;					// The entity to query roles for.
                     Mber::MberPtr<Mber::EntityType > m_entityType;					// The type of entity to query roles for.
                 public:
-                    Request::Request( Mber::MberPtr<std::string > profileId,std::string entityId,Mber::MberPtr<Mber::EntityType > entityType );
+                    Request( Mber::MberPtr<std::string > profileId,std::string entityId,Mber::MberPtr<Mber::EntityType > entityType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2900,7 +2902,7 @@ namespace Mber{
                     std::list<std::string> m_ipAddresses;					// A list of IP addresses
                     Mber::EntityID m_role;					// The role to which this filter applies
                 public:
-                    Request::Request( std::list<std::string> ipAddresses,Mber::EntityID role );
+                    Request( std::list<std::string> ipAddresses,Mber::EntityID role );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2918,7 +2920,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_ipsToAdd;					// The IP addresses to add to the given filter
                     Mber::MberPtr<std::list<std::string> > m_ipsToRemove;					// The IP addresses to remove from the given filter
                 public:
-                    Request::Request( Mber::EntityID role,Mber::MberPtr<std::list<std::string> > ipsToAdd,Mber::MberPtr<std::list<std::string> > ipsToRemove );
+                    Request( Mber::EntityID role,Mber::MberPtr<std::list<std::string> > ipsToAdd,Mber::MberPtr<std::list<std::string> > ipsToRemove );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2935,7 +2937,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_role;					// The role to which this IP filter applies
                 public:
-                    Request::Request( Mber::EntityID role );
+                    Request( Mber::EntityID role );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2954,7 +2956,7 @@ namespace Mber{
                     std::string m_parentId;					// The parent of the role
                     Mber::EntityType m_parentType;					// The type of the parent
                 public:
-                    Request::Request( std::string ipAddress,std::string parentId,Mber::EntityType parentType );
+                    Request( std::string ipAddress,std::string parentId,Mber::EntityType parentType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2970,7 +2972,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_role;					// The role to which this IP filter applies
                 public:
-                    Request::Request( Mber::EntityID role );
+                    Request( Mber::EntityID role );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -2996,7 +2998,7 @@ namespace Mber{
                     std::string m_name;					// Name of the Steam application.
                     std::string m_webAPIKey;					// The web api key that will be used for this application
                 public:
-                    Request::Request( int steamApplicationId,std::string name,std::string webAPIKey );
+                    Request( int steamApplicationId,std::string name,std::string webAPIKey );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3013,7 +3015,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_id;					// The identifier of the Steam application.
                 public:
-                    Request::Request( std::string id );
+                    Request( std::string id );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3029,7 +3031,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3049,7 +3051,7 @@ namespace Mber{
                     Mber::EntityID m_profileId;					// The profile to sync with Steam
                     Mber::MberPtr<Mber::EntityID > m_applicationId;					// The application to sync with Steam
                 public:
-                    Request::Request( Mber::EntityID profileId,Mber::MberPtr<Mber::EntityID > applicationId );
+                    Request( Mber::EntityID profileId,Mber::MberPtr<Mber::EntityID > applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3068,7 +3070,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The application whose profiles you want to sync with Steam
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3089,7 +3091,7 @@ namespace Mber{
                     int m_steamApplicationId;					// The unique Steam identifier of the application this ticket belongs to
                     std::string m_authSessionTicket;					// The Steam AuthSessionTicket that can be used to identify a Steam user
                 public:
-                    Request::Request( Mber::EntityID profileId,int steamApplicationId,std::string authSessionTicket );
+                    Request( Mber::EntityID profileId,int steamApplicationId,std::string authSessionTicket );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3112,7 +3114,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3138,7 +3140,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::AchievementPropertyDefinition> > m_properties;					// List of property definitions
                     Mber::MberPtr<std::list<std::string> > m_categories;					// List of categories the achievement definition falls under.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::list<Mber::AchievementPropertyDefinition> > properties,Mber::MberPtr<std::list<std::string> > categories );
+                    Request( std::string name,Mber::MberPtr<std::list<Mber::AchievementPropertyDefinition> > properties,Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3157,7 +3159,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_categoriesToAdd;					// Additional categories to add to this digital good definition.
                     Mber::MberPtr<std::list<std::string> > m_categoriesToRemove;					// Categories to be removed from this digital good defintion.
                 public:
-                    Request::Request( Mber::EntityID definitionId,std::string name,Mber::MberPtr<std::list<std::string> > categoriesToAdd,Mber::MberPtr<std::list<std::string> > categoriesToRemove );
+                    Request( Mber::EntityID definitionId,std::string name,Mber::MberPtr<std::list<std::string> > categoriesToAdd,Mber::MberPtr<std::list<std::string> > categoriesToRemove );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3174,7 +3176,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_definitionId;					// The definition id
                 public:
-                    Request::Request( Mber::EntityID definitionId );
+                    Request( Mber::EntityID definitionId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3190,7 +3192,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_definitionId;					// The definition id
                 public:
-                    Request::Request( Mber::EntityID definitionId );
+                    Request( Mber::EntityID definitionId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3210,7 +3212,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::DefinitionStatus> > m_unsetStatuses;					// A set of statuses which must *not* be included on the definition in order to be returned
                     Mber::MberPtr<std::list<std::string> > m_categories;					// The list of categories to filter definitions by.
                 public:
-                    Request::Request( Mber::MberPtr<std::list<Mber::DefinitionStatus> > setStatuses,Mber::MberPtr<std::list<Mber::DefinitionStatus> > unsetStatuses,Mber::MberPtr<std::list<std::string> > categories );
+                    Request( Mber::MberPtr<std::list<Mber::DefinitionStatus> > setStatuses,Mber::MberPtr<std::list<Mber::DefinitionStatus> > unsetStatuses,Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3232,7 +3234,7 @@ namespace Mber{
                     Mber::EntityPointer m_entity;					// The entity that earned the achievement
                     Mber::MberPtr<std::list<Mber::Property> > m_properties;					// List of properties to set
                 public:
-                    Request::Request( Mber::EntityID definitionId,Mber::EntityPointer entity,Mber::MberPtr<std::list<Mber::Property> > properties );
+                    Request( Mber::EntityID definitionId,Mber::EntityPointer entity,Mber::MberPtr<std::list<Mber::Property> > properties );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3249,7 +3251,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_definitionId;					// The id of the definition to create an instance for
                 public:
-                    Request::Request( Mber::EntityID definitionId );
+                    Request( Mber::EntityID definitionId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3270,7 +3272,7 @@ namespace Mber{
                     Mber::EntityID m_definitionId;					// The achievement definition of the achievement to revoke
                     Mber::EntityPointer m_entity;					// The entity that earned the achievement
                 public:
-                    Request::Request( std::string achievementInstanceId,Mber::EntityID definitionId,Mber::EntityPointer entity );
+                    Request( std::string achievementInstanceId,Mber::EntityID definitionId,Mber::EntityPointer entity );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3288,7 +3290,7 @@ namespace Mber{
                     std::string m_entityId;					// The entity to find achievements on.
                     Mber::EntityType m_entityType;					// The type of the entity that earned the achievement.
                 public:
-                    Request::Request( std::string entityId,Mber::EntityType entityType );
+                    Request( std::string entityId,Mber::EntityType entityType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3315,7 +3317,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_url;					// The URL where keys can be redeemed
                     Mber::MberPtr<Mber::EntityID > m_invalidWords;					// An Mber document listing words (separated by new lines) that won&#39;t appear in printed keys
                 public:
-                    Request::Request( std::string name,Mber::EntityID digitalGood,Mber::MberPtr<std::string > description,Mber::MberPtr<std::string > url,Mber::MberPtr<Mber::EntityID > invalidWords );
+                    Request( std::string name,Mber::EntityID digitalGood,Mber::MberPtr<std::string > description,Mber::MberPtr<std::string > url,Mber::MberPtr<Mber::EntityID > invalidWords );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3331,7 +3333,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_campaignId;					// The ID of the campaign to read
                 public:
-                    Request::Request( Mber::EntityID campaignId );
+                    Request( Mber::EntityID campaignId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3350,7 +3352,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_page;					// The page in the results to return. Pages start at 1.
                     Mber::MberPtr<uint64_t > m_maxResults;					// Can be used to specify the maximum number of results to return.  Will be limited to the global maximum number of results by default and may never return more than this.
                 public:
-                    Request::Request( Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
+                    Request( Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3370,7 +3372,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_url;					// The URL where keys can be redeemed
                     Mber::MberPtr<Mber::EntityID > m_invalidWords;					// An Mber document listing words (separated by new lines) that won&#39;t appear in printed keys
                 public:
-                    Request::Request( Mber::EntityID campaignId,Mber::MberPtr<std::string > name,Mber::MberPtr<Mber::EntityID > digitalGood,Mber::MberPtr<std::string > description,Mber::MberPtr<std::string > url,Mber::MberPtr<Mber::EntityID > invalidWords );
+                    Request( Mber::EntityID campaignId,Mber::MberPtr<std::string > name,Mber::MberPtr<Mber::EntityID > digitalGood,Mber::MberPtr<std::string > description,Mber::MberPtr<std::string > url,Mber::MberPtr<Mber::EntityID > invalidWords );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3385,7 +3387,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_campaignId;					// The ID of the campaign to delete
                 public:
-                    Request::Request( Mber::EntityID campaignId );
+                    Request( Mber::EntityID campaignId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3408,7 +3410,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::EntityID > m_outputDirectory;					// The directory to put created keys in
                     Mber::MberPtr<Mber::KeyFormat > m_keyFormat;					// The format the keys will show up in
                 public:
-                    Request::Request( Mber::EntityID campaignId,uint64_t numberOfKeys,std::string outputDocumentName,Mber::MberPtr<Mber::EntityID > outputDirectory,Mber::MberPtr<Mber::KeyFormat > keyFormat );
+                    Request( Mber::EntityID campaignId,uint64_t numberOfKeys,std::string outputDocumentName,Mber::MberPtr<Mber::EntityID > outputDirectory,Mber::MberPtr<Mber::KeyFormat > keyFormat );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3442,7 +3444,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::Reward> > m_redemptionRewards;					// List of reward entities to be rewarded to the owner when claimed by another user.
                     Mber::MberPtr<std::list<std::string> > m_categories;					// List of categories the digital good definition falls under.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > documentId,bool autoClaim,Mber::MberPtr<std::list<Mber::DigitalGoodPropertyDefinition> > properties,Mber::MberPtr<std::list<Mber::EntityID> > redeemableFor,Mber::MberPtr<uint64_t > ttl,Mber::MberPtr<bool > selfGrant,Mber::MberPtr<uint64_t > selfGrantCount,Mber::MberPtr<bool > emailOnGrant,Mber::MberPtr<bool > emailOnClaim,Mber::MberPtr<std::list<Mber::Reward> > redemptionRewards,Mber::MberPtr<std::list<std::string> > categories );
+                    Request( std::string name,Mber::MberPtr<std::string > documentId,bool autoClaim,Mber::MberPtr<std::list<Mber::DigitalGoodPropertyDefinition> > properties,Mber::MberPtr<std::list<Mber::EntityID> > redeemableFor,Mber::MberPtr<uint64_t > ttl,Mber::MberPtr<bool > selfGrant,Mber::MberPtr<uint64_t > selfGrantCount,Mber::MberPtr<bool > emailOnGrant,Mber::MberPtr<bool > emailOnClaim,Mber::MberPtr<std::list<Mber::Reward> > redemptionRewards,Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3469,7 +3471,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_categoriesToAdd;					// Additional categories to add to this digital good definition.
                     Mber::MberPtr<std::list<std::string> > m_categoriesToRemove;					// Categories to be removed from this digital good defintion.
                 public:
-                    Request::Request( Mber::EntityID definitionId,std::string name,bool autoClaim,Mber::MberPtr<std::list<Mber::EntityID> > redeemableFor,Mber::MberPtr<uint64_t > ttl,Mber::MberPtr<bool > selfGrant,Mber::MberPtr<uint64_t > selfGrantCount,Mber::MberPtr<bool > emailOnGrant,Mber::MberPtr<bool > emailOnClaim,Mber::MberPtr<std::list<Mber::Reward> > redemptionRewards,Mber::MberPtr<std::list<std::string> > categoriesToAdd,Mber::MberPtr<std::list<std::string> > categoriesToRemove );
+                    Request( Mber::EntityID definitionId,std::string name,bool autoClaim,Mber::MberPtr<std::list<Mber::EntityID> > redeemableFor,Mber::MberPtr<uint64_t > ttl,Mber::MberPtr<bool > selfGrant,Mber::MberPtr<uint64_t > selfGrantCount,Mber::MberPtr<bool > emailOnGrant,Mber::MberPtr<bool > emailOnClaim,Mber::MberPtr<std::list<Mber::Reward> > redemptionRewards,Mber::MberPtr<std::list<std::string> > categoriesToAdd,Mber::MberPtr<std::list<std::string> > categoriesToRemove );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3486,7 +3488,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_definitionId;					// The definition id
                 public:
-                    Request::Request( Mber::EntityID definitionId );
+                    Request( Mber::EntityID definitionId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3502,7 +3504,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_definitionId;					// The definition id
                 public:
-                    Request::Request( Mber::EntityID definitionId );
+                    Request( Mber::EntityID definitionId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3522,7 +3524,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::DefinitionStatus> > m_unsetStatuses;					// A set of statuses which must *not* be included on the definition in order to be returned
                     Mber::MberPtr<std::list<std::string> > m_categories;					// The categories by which to filter digital good definitions.
                 public:
-                    Request::Request( Mber::MberPtr<std::list<Mber::DefinitionStatus> > setStatuses,Mber::MberPtr<std::list<Mber::DefinitionStatus> > unsetStatuses,Mber::MberPtr<std::list<std::string> > categories );
+                    Request( Mber::MberPtr<std::list<Mber::DefinitionStatus> > setStatuses,Mber::MberPtr<std::list<Mber::DefinitionStatus> > unsetStatuses,Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3544,7 +3546,7 @@ namespace Mber{
                     Mber::EntityPointer m_entity;					// The entity to grant the digital good to
                     Mber::MberPtr<std::list<Mber::Property> > m_properties;					// List of properties to set
                 public:
-                    Request::Request( Mber::EntityID definitionId,Mber::EntityPointer entity,Mber::MberPtr<std::list<Mber::Property> > properties );
+                    Request( Mber::EntityID definitionId,Mber::EntityPointer entity,Mber::MberPtr<std::list<Mber::Property> > properties );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3565,7 +3567,7 @@ namespace Mber{
                     std::string m_instanceId;					// The id of the digital good to claim
                     Mber::MberPtr<std::list<Mber::Property> > m_properties;					// List of properties to set
                 public:
-                    Request::Request( Mber::EntityPointer entity,std::string instanceId,Mber::MberPtr<std::list<Mber::Property> > properties );
+                    Request( Mber::EntityPointer entity,std::string instanceId,Mber::MberPtr<std::list<Mber::Property> > properties );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3586,7 +3588,7 @@ namespace Mber{
                     Mber::EntityID m_definitionId;					// The definition id of the Digital Good to revoke
                     Mber::EntityPointer m_entity;					// The entity that earned the achievement
                 public:
-                    Request::Request( std::string digitalGoodInstanceId,Mber::EntityID definitionId,Mber::EntityPointer entity );
+                    Request( std::string digitalGoodInstanceId,Mber::EntityID definitionId,Mber::EntityPointer entity );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3608,7 +3610,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_includeExpired;					// Include digital goods that are expired
                     Mber::MberPtr<std::list<std::string> > m_categories;					// The categories by which to filter digital good instances.
                 public:
-                    Request::Request( std::string entityId,Mber::EntityType entityType,Mber::MberPtr<std::list<std::string> > definitionIds,Mber::MberPtr<std::list<Mber::EntitlementState> > states,Mber::MberPtr<bool > includeExpired,Mber::MberPtr<std::list<std::string> > categories );
+                    Request( std::string entityId,Mber::EntityType entityType,Mber::MberPtr<std::list<std::string> > definitionIds,Mber::MberPtr<std::list<Mber::EntitlementState> > states,Mber::MberPtr<bool > includeExpired,Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3628,7 +3630,7 @@ namespace Mber{
                     std::string m_instanceId;					// The id of the digital good to redeem
                     Mber::EntityID m_definitionId;					// The definition id of the Digital Good to revoke
                 public:
-                    Request::Request( std::string instanceId,Mber::EntityID definitionId );
+                    Request( std::string instanceId,Mber::EntityID definitionId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3655,7 +3657,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_page;					// The page in the results to return. Pages start at 1.
                     Mber::MberPtr<uint64_t > m_maxResults;					// Can be used to specify the maximum number of results to return.  Will be limited to the global maximum number of results by default and may never return more than this.
                 public:
-                    Request::Request( Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
+                    Request( Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3689,7 +3691,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_keepAllVersions;					// If true, all versions of this document will be preserved.
                     Mber::MberPtr<uint64_t > m_maxTimeToKeep;					// The maximum amount of time to preserve versions of this document.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<std::list<Mber::Property> > properties,Mber::MberPtr<Mber::EntityID > documentTemplate,Mber::MberPtr<std::string > content,Mber::MberPtr<Mber::EntityID > directoryId,Mber::MberPtr<bool > validateAgainstTemplate,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<bool > keepAllVersions,Mber::MberPtr<uint64_t > maxTimeToKeep );
+                    Request( std::string name,Mber::MberPtr<std::string > alias,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<std::list<Mber::Property> > properties,Mber::MberPtr<Mber::EntityID > documentTemplate,Mber::MberPtr<std::string > content,Mber::MberPtr<Mber::EntityID > directoryId,Mber::MberPtr<bool > validateAgainstTemplate,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<bool > keepAllVersions,Mber::MberPtr<uint64_t > maxTimeToKeep );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3706,7 +3708,7 @@ namespace Mber{
                     Mber::EntityID m_documentId;					// The unique identifier of the document
                     Mber::MberPtr<uint64_t > m_version;					// The optional version of the document to read. Defaults to the most recent version.
                 public:
-                    Request::Request( Mber::EntityID documentId,Mber::MberPtr<uint64_t > version );
+                    Request( Mber::EntityID documentId,Mber::MberPtr<uint64_t > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3735,7 +3737,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_keepAllVersions;					// If true, all future versions of this document will be preserved.
                     Mber::MberPtr<int > m_restoreVersion;					// A previous version of the document to restore.
                 public:
-                    Request::Request( Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::EntityID documentId,Mber::MberPtr<int > version,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<std::list<Mber::Property> > properties,Mber::MberPtr<std::string > content,Mber::MberPtr<Mber::EntityID > directoryId,Mber::MberPtr<std::list<std::string> > tagsToAdd,Mber::MberPtr<std::list<std::string> > tagsToRemove,Mber::MberPtr<bool > validateAgainstTemplate,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions,Mber::MberPtr<int > restoreVersion );
+                    Request( Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::EntityID documentId,Mber::MberPtr<int > version,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<std::list<Mber::Property> > properties,Mber::MberPtr<std::string > content,Mber::MberPtr<Mber::EntityID > directoryId,Mber::MberPtr<std::list<std::string> > tagsToAdd,Mber::MberPtr<std::list<std::string> > tagsToRemove,Mber::MberPtr<bool > validateAgainstTemplate,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions,Mber::MberPtr<int > restoreVersion );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3750,7 +3752,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_documentId;					// The unique identifier of the document
                 public:
-                    Request::Request( Mber::EntityID documentId );
+                    Request( Mber::EntityID documentId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3769,7 +3771,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_expandTags;					// Flag indicating whether or not to return results that take into account tagged tags
                     Mber::MberPtr<std::list<std::string> > m_tags;					// Set of tags that must be present on the document
                 public:
-                    Request::Request( Mber::MberPtr<bool > expandTags,Mber::MberPtr<std::list<std::string> > tags );
+                    Request( Mber::MberPtr<bool > expandTags,Mber::MberPtr<std::list<std::string> > tags );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3792,7 +3794,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_maxTimeToKeep;					// The maximum amount of time to preserve versions of this document.
                     Mber::MberPtr<bool > m_keepAllVersions;					// If true, all versions of this document template will be preserved.
                 public:
-                    Request::Request( std::string name,std::string templateId,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions );
+                    Request( std::string name,std::string templateId,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3808,7 +3810,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_documentTemplateId;					// The unique identifier of the document created
                 public:
-                    Request::Request( Mber::EntityID documentTemplateId );
+                    Request( Mber::EntityID documentTemplateId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3823,7 +3825,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3844,7 +3846,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_maxTimeToKeep;					// The maximum amount of time to preserve versions of this document.
                     Mber::MberPtr<bool > m_keepAllVersions;					// If true, all future versions of this document will be preserved.
                 public:
-                    Request::Request( Mber::EntityID documentTemplateId,std::string name,Mber::MberPtr<std::string > templateId,Mber::MberPtr<int > version,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions );
+                    Request( Mber::EntityID documentTemplateId,std::string name,Mber::MberPtr<std::string > templateId,Mber::MberPtr<int > version,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3859,7 +3861,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_documentTemplateId;					// The unique identifier of the document created
                 public:
-                    Request::Request( Mber::EntityID documentTemplateId );
+                    Request( Mber::EntityID documentTemplateId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3882,7 +3884,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::EntityID > m_parent;					// The directory to create this directory in. To create a directory in the root of the application, use the application id as the parent.
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_children;					// Documents or other directories to move into this directory.  Moving a document into this directory will remove it from the other directory.  This action will not be allowed if any one of the supplied pointers is not a Document or Directory.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > alias,Mber::MberPtr<Mber::EntityID > parent,Mber::MberPtr<std::list<Mber::EntityPointer> > children );
+                    Request( std::string name,Mber::MberPtr<std::string > alias,Mber::MberPtr<Mber::EntityID > parent,Mber::MberPtr<std::list<Mber::EntityPointer> > children );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3899,7 +3901,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_directoryId;					// The unique identifier of the directory
                 public:
-                    Request::Request( Mber::EntityID directoryId );
+                    Request( Mber::EntityID directoryId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3919,7 +3921,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::EntityID > m_parent;					// An optional directory to move this directory into. The directory parent must be in the same application as the token being used. If not supplied, the directory will be created in the top level of the file system for the application in token.
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_children;					// Documents or other directories to move into this directory.  Moving a document into this directory will remove it from the other directory.  This action will not be allowed if any one of the supplied pointers is not a Document or Directory.
                 public:
-                    Request::Request( Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::EntityID directoryId,Mber::MberPtr<Mber::EntityID > parent,Mber::MberPtr<std::list<Mber::EntityPointer> > children );
+                    Request( Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::EntityID directoryId,Mber::MberPtr<Mber::EntityID > parent,Mber::MberPtr<std::list<Mber::EntityPointer> > children );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3935,7 +3937,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_directoryId;					// The unique identifier of the directory to delete
                 public:
-                    Request::Request( Mber::EntityID directoryId );
+                    Request( Mber::EntityID directoryId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3951,7 +3953,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3973,7 +3975,7 @@ namespace Mber{
                     Mber::Query m_query;					// The structured query to execute
                     Mber::MberPtr<Mber::EntityID > m_applicationId;					// The application to search within. If provided, templates will be ignored and all templates will be searched
                 public:
-                    Request::Request( Mber::MberPtr<std::list<Mber::EntityID> > documentTemplateId,Mber::Query query,Mber::MberPtr<Mber::EntityID > applicationId );
+                    Request( Mber::MberPtr<std::list<Mber::EntityID> > documentTemplateId,Mber::Query query,Mber::MberPtr<Mber::EntityID > applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -3999,7 +4001,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_tags;					// Initial set of tags (eg: Article ) to apply to the data for querying purposes.
                     Mber::MberPtr<Mber::EntityID > m_directoryId;					// The unique identifier of the directory for the document. If not supplied the root directory for the application will be used
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > alias,long size,Mber::MberPtr<std::string > contentType,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<Mber::EntityID > directoryId );
+                    Request( std::string name,Mber::MberPtr<std::string > alias,long size,Mber::MberPtr<std::string > contentType,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<Mber::EntityID > directoryId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4022,7 +4024,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_tags;					// Initial set of tags (eg: Article ) to apply to the data for querying purposes.
                     Mber::MberPtr<Mber::EntityID > m_directoryId;					// The unique identifier of the directory for the document. If not supplied the root directory for the application will be used
                 public:
-                    Request::Request( Mber::EntityID documentId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::MberPtr<long > size,Mber::MberPtr<std::string > contentType,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<Mber::EntityID > directoryId );
+                    Request( Mber::EntityID documentId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > alias,Mber::MberPtr<long > size,Mber::MberPtr<std::string > contentType,Mber::MberPtr<std::list<std::string> > tags,Mber::MberPtr<Mber::EntityID > directoryId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4040,7 +4042,7 @@ namespace Mber{
                     Mber::EntityID m_documentId;					// The unique identifier of the document being read.
                     Mber::MberPtr<std::string > m_contentType;					// The http content type of the document being read.  Unlike CREATE and UPDATE, if a content-type is not provided, there should be no content-type header added when using the returned URL. If it is provided, then a matching content-type header must be in the GET request to the returned url.
                 public:
-                    Request::Request( Mber::EntityID documentId,Mber::MberPtr<std::string > contentType );
+                    Request( Mber::EntityID documentId,Mber::MberPtr<std::string > contentType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4062,7 +4064,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_templateId;					// The ID of the document template to index documents in
                     Mber::MberPtr<bool > m_deleteIndex;					// Flag to determine if the index should be deleted
                 public:
-                    Request::Request( Mber::EventType eventType,Mber::EntityID applicationId,Mber::MberPtr<std::string > templateId,Mber::MberPtr<bool > deleteIndex );
+                    Request( Mber::EventType eventType,Mber::EntityID applicationId,Mber::MberPtr<std::string > templateId,Mber::MberPtr<bool > deleteIndex );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4086,7 +4088,7 @@ namespace Mber{
                     std::string m_secretKey;					// An AWS secret key
                     int m_urlTtl;					// Used for signing URLs, the time when the signature expires, specified as the number of seconds since the epoch.
                 public:
-                    Request::Request( std::string applicationId,std::string name,std::string accessKey,std::string secretKey,int urlTtl );
+                    Request( std::string applicationId,std::string name,std::string accessKey,std::string secretKey,int urlTtl );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4106,7 +4108,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_secretKey;					// An AWS secret key
                     Mber::MberPtr<int > m_urlTtl;					// Used for signing URLs, the time when the signature expires, specified as the number of seconds since the epoch.
                 public:
-                    Request::Request( std::string applicationId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > accessKey,Mber::MberPtr<std::string > secretKey,Mber::MberPtr<int > urlTtl );
+                    Request( std::string applicationId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > accessKey,Mber::MberPtr<std::string > secretKey,Mber::MberPtr<int > urlTtl );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4123,7 +4125,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_applicationId;					// The application this bucket belongs to
                 public:
-                    Request::Request( std::string applicationId );
+                    Request( std::string applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4139,7 +4141,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_applicationId;					// The application this bucket belongs to
                 public:
-                    Request::Request( std::string applicationId );
+                    Request( std::string applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4161,7 +4163,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_maxTimeToKeep;					// The amount of time (in seconds) to keep versions for the entity.
                     Mber::MberPtr<bool > m_keepAllVersions;					// If true, all future versions of this document will be preserved.
                 public:
-                    Request::Request( std::string applicationId,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions );
+                    Request( std::string applicationId,Mber::MberPtr<uint64_t > maxVersionsToKeep,Mber::MberPtr<uint64_t > maxTimeToKeep,Mber::MberPtr<bool > keepAllVersions );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4178,7 +4180,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_applicationId;					// The application for which to read document history configuration.
                 public:
-                    Request::Request( std::string applicationId );
+                    Request( std::string applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4194,7 +4196,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_applicationId;					// The application for which to read document history configuration.
                 public:
-                    Request::Request( std::string applicationId );
+                    Request( std::string applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4216,7 +4218,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_rollbackTime;					// The point in time in which to rollback the documents to.
                     Mber::MberPtr<bool > m_earliestVersion;					// A flag indicating whether or not to roll documents back to the earliest version stored.
                 public:
-                    Request::Request( std::string applicationId,Mber::MberPtr<bool > cascading,Mber::MberPtr<uint64_t > rollbackTime,Mber::MberPtr<bool > earliestVersion );
+                    Request( std::string applicationId,Mber::MberPtr<bool > cascading,Mber::MberPtr<uint64_t > rollbackTime,Mber::MberPtr<bool > earliestVersion );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4238,7 +4240,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_maxResults;					// The maximum number of results to return.
                     Mber::MberPtr<bool > m_descending;					// The order in which to return results. If true, the latest versions will be returned first.
                 public:
-                    Request::Request( std::string documentId,Mber::MberPtr<uint64_t > maxResults,Mber::MberPtr<bool > descending );
+                    Request( std::string documentId,Mber::MberPtr<uint64_t > maxResults,Mber::MberPtr<bool > descending );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4268,7 +4270,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_cdnHost;					// The host, if any, where the cached files reside. Used for cache invalidation/purging.
                     Mber::MberPtr<std::string > m_baseContainer;					// The base container for all object paths. This will be excluded from absolute URLs when purging the CDN cache for a given object.
                 public:
-                    Request::Request( Mber::CDNType cdnType,std::string name,Mber::MberPtr<std::string > defaultPath,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > storageUsername,Mber::MberPtr<std::string > storagePassword,Mber::MberPtr<std::string > apiKey,Mber::MberPtr<std::string > account,Mber::MberPtr<std::string > cdnHost,Mber::MberPtr<std::string > baseContainer );
+                    Request( Mber::CDNType cdnType,std::string name,Mber::MberPtr<std::string > defaultPath,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > storageUsername,Mber::MberPtr<std::string > storagePassword,Mber::MberPtr<std::string > apiKey,Mber::MberPtr<std::string > account,Mber::MberPtr<std::string > cdnHost,Mber::MberPtr<std::string > baseContainer );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4285,7 +4287,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_id;					// The unique id of the CDN configuration
                 public:
-                    Request::Request( Mber::EntityID id );
+                    Request( Mber::EntityID id );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4312,7 +4314,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_cdnHost;					// The host, if any, where the cached files reside. Used for cache invalidation/purging.
                     Mber::MberPtr<std::string > m_baseContainer;					// The base container for all object paths. This will be excluded from absolute URLs when purging the CDN cache for a given object.
                 public:
-                    Request::Request( Mber::EntityID id,Mber::MberPtr<Mber::CDNType > cdnType,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > defaultPath,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > storageUsername,Mber::MberPtr<std::string > storagePassword,Mber::MberPtr<std::string > apiKey,Mber::MberPtr<std::string > account,Mber::MberPtr<std::string > cdnHost,Mber::MberPtr<std::string > baseContainer );
+                    Request( Mber::EntityID id,Mber::MberPtr<Mber::CDNType > cdnType,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > defaultPath,Mber::MberPtr<std::string > username,Mber::MberPtr<std::string > password,Mber::MberPtr<std::string > storageUsername,Mber::MberPtr<std::string > storagePassword,Mber::MberPtr<std::string > apiKey,Mber::MberPtr<std::string > account,Mber::MberPtr<std::string > cdnHost,Mber::MberPtr<std::string > baseContainer );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4328,7 +4330,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4344,7 +4346,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_id;					// The unique id of the CDN configuration
                 public:
-                    Request::Request( Mber::EntityID id );
+                    Request( Mber::EntityID id );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4365,7 +4367,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::EntityID > m_cdnConfigId;					// The id of the CDN configuration
                     Mber::MberPtr<std::string > m_resourcePath;					// Optional CDN path with which to sync
                 public:
-                    Request::Request( Mber::EntityPointer entity,Mber::MberPtr<Mber::EntityID > cdnConfigId,Mber::MberPtr<std::string > resourcePath );
+                    Request( Mber::EntityPointer entity,Mber::MberPtr<Mber::EntityID > cdnConfigId,Mber::MberPtr<std::string > resourcePath );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4383,7 +4385,7 @@ namespace Mber{
                     Mber::EntityType m_entityType;					// The type of the entity
                     Mber::MberPtr<Mber::EntityID > m_cdnConfigId;					// The id of the CDN configuration
                 public:
-                    Request::Request( std::string entityId,Mber::EntityType entityType,Mber::MberPtr<Mber::EntityID > cdnConfigId );
+                    Request( std::string entityId,Mber::EntityType entityType,Mber::MberPtr<Mber::EntityID > cdnConfigId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4401,7 +4403,7 @@ namespace Mber{
                     std::string m_entityId;					// The id of the entity whose CDN sync configurations will be fetched
                     Mber::EntityType m_entityType;					// The type fo the entity whose CDN sync configurations will be fetched.
                 public:
-                    Request::Request( std::string entityId,Mber::EntityType entityType );
+                    Request( std::string entityId,Mber::EntityType entityType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4423,7 +4425,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_rollbackTime;					// The point in time in which to rollback the documents to.
                     Mber::MberPtr<bool > m_earliestVersion;					// A flag indicating whether or not to roll documents back to the earliest version stored.
                 public:
-                    Request::Request( std::string directoryId,Mber::MberPtr<bool > cascading,Mber::MberPtr<uint64_t > rollbackTime,Mber::MberPtr<bool > earliestVersion );
+                    Request( std::string directoryId,Mber::MberPtr<bool > cascading,Mber::MberPtr<uint64_t > rollbackTime,Mber::MberPtr<bool > earliestVersion );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4447,7 +4449,7 @@ namespace Mber{
                     std::string m_identity;					// The unique OpenID identity for the OP
                     std::string m_return_to;					// The URL the OpenID provider should respond to.
                 public:
-                    Request::Request( std::string identity,std::string return_to );
+                    Request( std::string identity,std::string return_to );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4471,7 +4473,7 @@ namespace Mber{
                     std::list<Mber::Property> m_properties;					// The OpenID properties supplied from the OpenID Provider after authenticating a user
                     Mber::MberPtr<std::string > m_scope;					// space delimited case sensitive strings; requested
                 public:
-                    Request::Request( std::string AuthRequestId,std::string return_to,std::string client_id,Mber::MberPtr<std::string > redirect_uri,std::list<Mber::Property> properties,Mber::MberPtr<std::string > scope );
+                    Request( std::string AuthRequestId,std::string return_to,std::string client_id,Mber::MberPtr<std::string > redirect_uri,std::list<Mber::Property> properties,Mber::MberPtr<std::string > scope );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4489,7 +4491,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::list<Mber::Property> m_properties;					// The OpenID parameters sent to Mber to validate a user
                 public:
-                    Request::Request( std::list<Mber::Property> properties );
+                    Request( std::list<Mber::Property> properties );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4510,7 +4512,7 @@ namespace Mber{
                     std::string m_domain;					// The domain to associated with the application
                     std::string m_identity;					// The identity to send to Mber to initiate communication with the OpenId provider.
                 public:
-                    Request::Request( Mber::EntityID applicationId,std::string domain,std::string identity );
+                    Request( Mber::EntityID applicationId,std::string domain,std::string identity );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4526,7 +4528,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The id of the application to set a provider on
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4543,7 +4545,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The id of the application to set a provider on
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4559,7 +4561,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4590,7 +4592,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_includeChildApplications;					// If true, the scope of the search for events for this entity will include child applications of the application specified by the applicationId parameter. If false, the scope will only include the application specified by the applicationId parameter.
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( std::string entityId,Mber::EntityType entityType,uint64_t startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > descending,Mber::MberPtr<int > maxResults,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
+                    Request( std::string entityId,Mber::EntityType entityType,uint64_t startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > descending,Mber::MberPtr<int > maxResults,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4614,7 +4616,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::ProfileHistoryFilter> > m_filterBy;					// Only include events that match these types in the results.
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( std::string profileId,uint64_t startDate,Mber::MberPtr<std::list<Mber::ProfileHistoryFilter> > filterBy,Mber::MberPtr<int > version );
+                    Request( std::string profileId,uint64_t startDate,Mber::MberPtr<std::list<Mber::ProfileHistoryFilter> > filterBy,Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4642,7 +4644,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_includeChildApplications;					// If true, the scope of the search for events for this entity will include child applications of the application specified by the access token&#39;s applicationId parameter. If false, the scope will only include the application specified by the access token&#39;s applicationId parameter.
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( std::string eventName,Mber::EventType eventType,uint64_t startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > descending,Mber::MberPtr<int > maxResults,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
+                    Request( std::string eventName,Mber::EventType eventType,uint64_t startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > descending,Mber::MberPtr<int > maxResults,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4670,7 +4672,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_includeChildApplications;					// If true, the scope of the search for events for this entity will include child applications of the application specified by the access token&#39;s applicationId parameter. If false, the scope will only include the application specified by the access token&#39;s applicationId parameter.
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( std::string eventName,Mber::EventType eventType,Mber::TimeUnit timeUnit,uint64_t startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > descending,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
+                    Request( std::string eventName,Mber::EventType eventType,Mber::TimeUnit timeUnit,uint64_t startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > descending,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4695,7 +4697,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_includeChildApplications;					// If true, the scope of the search for events for this entity will include child applications of the application specified by the applicationId parameter. If false, the scope will only include the application specified by the applicationId parameter.
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( std::string eventName,Mber::EventType eventType,Mber::MberPtr<uint64_t > startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
+                    Request( std::string eventName,Mber::EventType eventType,Mber::MberPtr<uint64_t > startDate,Mber::MberPtr<uint64_t > endDate,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4715,7 +4717,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( Mber::MberPtr<int > version );
+                    Request( Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4743,7 +4745,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_includeChildApplications;					// If true, the scope of the search for events for this entity will include child applications of the application specified by the applicationId parameter. If false, the scope will only include the application specified by the applicationId parameter.
                     Mber::MberPtr<int > m_version;					// The metric schema version to use. Version 1 is the original metric schema, version 2 is the new metric schema. Will default to version 1.
                 public:
-                    Request::Request( std::string eventName,Mber::EventType eventType,Mber::MberPtr<uint64_t > startDate,Mber::MberPtr<uint64_t > endDate,Mber::TimeUnit timeUnit,Mber::MberPtr<bool > descending,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
+                    Request( std::string eventName,Mber::EventType eventType,Mber::MberPtr<uint64_t > startDate,Mber::MberPtr<uint64_t > endDate,Mber::TimeUnit timeUnit,Mber::MberPtr<bool > descending,Mber::MberPtr<bool > includeChildApplications,Mber::MberPtr<int > version );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4781,7 +4783,7 @@ namespace Mber{
                     Mber::MberPtr<long > m_value;					// The amount (if relevant) associated with the payment or modification.
                     Mber::MberPtr<Mber::CurrencyCode > m_currency;					// The currencyCode that the value is in (if relevant).
                 public:
-                    Request::Request( Mber::MberPtr<std::string > basicAuthUserName,Mber::MberPtr<std::string > basicAuthPassword,Mber::MberPtr<bool > live,Mber::MberPtr<std::string > eventCode,Mber::MberPtr<std::string > pspReference,Mber::MberPtr<std::string > originalReference,Mber::MberPtr<std::string > merchantReference,Mber::MberPtr<std::string > merchantAccountCode,Mber::MberPtr<std::string > eventDate,Mber::MberPtr<bool > success,Mber::MberPtr<std::string > paymentMethod,Mber::MberPtr<std::string > operations,Mber::MberPtr<std::string > reason,Mber::MberPtr<long > value,Mber::MberPtr<Mber::CurrencyCode > currency );
+                    Request( Mber::MberPtr<std::string > basicAuthUserName,Mber::MberPtr<std::string > basicAuthPassword,Mber::MberPtr<bool > live,Mber::MberPtr<std::string > eventCode,Mber::MberPtr<std::string > pspReference,Mber::MberPtr<std::string > originalReference,Mber::MberPtr<std::string > merchantReference,Mber::MberPtr<std::string > merchantAccountCode,Mber::MberPtr<std::string > eventDate,Mber::MberPtr<bool > success,Mber::MberPtr<std::string > paymentMethod,Mber::MberPtr<std::string > operations,Mber::MberPtr<std::string > reason,Mber::MberPtr<long > value,Mber::MberPtr<Mber::CurrencyCode > currency );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4811,7 +4813,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_country_payment;					// Country ISO Code (2 characters) from which the payments methods must be displayed without showing the country selection page to the final user.
                     Mber::MberPtr<std::string > m_test_mode;					// Parameter used to indicate that a transaction will be in test mode. Can be used the value “1” to test integration and “0” to production environment.
                 public:
-                    Request::Request( Mber::MberPtr<std::string > store_id,Mber::MberPtr<std::string > transaction_id,Mber::MberPtr<std::string > order_id,Mber::MberPtr<long > amount,Mber::MberPtr<Mber::CurrencyCode > currency_code,Mber::MberPtr<std::string > payment_id,Mber::MberPtr<std::string > country_payment,Mber::MberPtr<std::string > test_mode );
+                    Request( Mber::MberPtr<std::string > store_id,Mber::MberPtr<std::string > transaction_id,Mber::MberPtr<std::string > order_id,Mber::MberPtr<long > amount,Mber::MberPtr<Mber::CurrencyCode > currency_code,Mber::MberPtr<std::string > payment_id,Mber::MberPtr<std::string > country_payment,Mber::MberPtr<std::string > test_mode );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4840,7 +4842,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_categories;					// A collection of arbitrary strings denoting the categories this offer falls into.
                     Mber::MberPtr<std::list<Mber::OfferItem> > m_rewards;					// Items distributed on consumption of this offer to a recipient other than the owner of this offer.
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<uint64_t > stock,Mber::MberPtr<std::list<Mber::OfferItem> > inputs,Mber::MberPtr<std::list<Mber::OfferItem> > outputs,Mber::MberPtr<std::list<std::string> > categories,Mber::MberPtr<std::list<Mber::OfferItem> > rewards );
+                    Request( std::string name,Mber::MberPtr<uint64_t > stock,Mber::MberPtr<std::list<Mber::OfferItem> > inputs,Mber::MberPtr<std::list<Mber::OfferItem> > outputs,Mber::MberPtr<std::list<std::string> > categories,Mber::MberPtr<std::list<Mber::OfferItem> > rewards );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4857,7 +4859,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<std::list<std::string> > m_categories;					// The categories to list offers from.
                 public:
-                    Request::Request( Mber::MberPtr<std::list<std::string> > categories );
+                    Request( Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4875,7 +4877,7 @@ namespace Mber{
                     Mber::EntityID m_offerId;					// The id of the offer to read
                     Mber::MberPtr<Mber::EntityID > m_application;					// The application to find the offer in. If not supplied an access token must be supplied with the request to denote the application.
                 public:
-                    Request::Request( Mber::EntityID offerId,Mber::MberPtr<Mber::EntityID > application );
+                    Request( Mber::EntityID offerId,Mber::MberPtr<Mber::EntityID > application );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4891,7 +4893,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_offerId;					// The offer to delete
                 public:
-                    Request::Request( Mber::EntityID offerId );
+                    Request( Mber::EntityID offerId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4913,7 +4915,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_categories;					// A collection of arbitrary strings denoting the categories this offer falls into. Any existing categories will be deleted and replaced with the provided categories. If an existing category is not provided, they will be removed. To preserve existing categories, provide them in the request along with any new categories. To remove a category, simply exlude it from the request.
                     Mber::MberPtr<std::list<Mber::OfferItem> > m_rewards;					// Items distributed on consumption of this offer to a recipient other than the recipient of the offer outputs.
                 public:
-                    Request::Request( Mber::EntityID offerId,std::string name,Mber::MberPtr<uint64_t > stock,Mber::MberPtr<std::list<Mber::OfferItem> > inputs,Mber::MberPtr<std::list<Mber::OfferItem> > outputs,Mber::MberPtr<std::list<std::string> > categories,Mber::MberPtr<std::list<Mber::OfferItem> > rewards );
+                    Request( Mber::EntityID offerId,std::string name,Mber::MberPtr<uint64_t > stock,Mber::MberPtr<std::list<Mber::OfferItem> > inputs,Mber::MberPtr<std::list<Mber::OfferItem> > outputs,Mber::MberPtr<std::list<std::string> > categories,Mber::MberPtr<std::list<Mber::OfferItem> > rewards );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4934,7 +4936,7 @@ namespace Mber{
                     std::string m_name;					// Human readable name for the store
                     Mber::MberPtr<std::list<Mber::EntityID> > m_offers;					// The offers to make available in the store
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::list<Mber::EntityID> > offers );
+                    Request( std::string name,Mber::MberPtr<std::list<Mber::EntityID> > offers );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4951,7 +4953,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<Mber::EntityID > m_application;					// The application to find stores in
                 public:
-                    Request::Request( Mber::MberPtr<Mber::EntityID > application );
+                    Request( Mber::MberPtr<Mber::EntityID > application );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4970,7 +4972,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::EntityID > m_application;					// The application to find stores in
                     Mber::MberPtr<std::list<std::string> > m_categories;					// The categories to include offers from
                 public:
-                    Request::Request( Mber::EntityID storeId,Mber::MberPtr<Mber::EntityID > application,Mber::MberPtr<std::list<std::string> > categories );
+                    Request( Mber::EntityID storeId,Mber::MberPtr<Mber::EntityID > application,Mber::MberPtr<std::list<std::string> > categories );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -4986,7 +4988,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_storeId;					// The store to delete
                 public:
-                    Request::Request( Mber::EntityID storeId );
+                    Request( Mber::EntityID storeId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5005,7 +5007,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::EntityID> > m_addOffers;					// The offers to make available in the store
                     Mber::MberPtr<std::list<Mber::EntityID> > m_removeOffers;					// The offers to remove from the store
                 public:
-                    Request::Request( Mber::EntityID storeId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::list<Mber::EntityID> > addOffers,Mber::MberPtr<std::list<Mber::EntityID> > removeOffers );
+                    Request( Mber::EntityID storeId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::list<Mber::EntityID> > addOffers,Mber::MberPtr<std::list<Mber::EntityID> > removeOffers );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5026,7 +5028,7 @@ namespace Mber{
                     Mber::EntityID m_storeId;					// The store to get the cart contents in
                     Mber::MberPtr<std::string > m_paymentRedirectUri;					// The uri to redirect to after payment
                 public:
-                    Request::Request( Mber::EntityID storeId,Mber::MberPtr<std::string > paymentRedirectUri );
+                    Request( Mber::EntityID storeId,Mber::MberPtr<std::string > paymentRedirectUri );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5045,7 +5047,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::EntityID> > m_offers;					// The offers to include in the cart
                     Mber::MberPtr<std::string > m_paymentRedirectUri;					// The uri to redirect to after payment
                 public:
-                    Request::Request( Mber::EntityID storeId,Mber::MberPtr<std::list<Mber::EntityID> > offers,Mber::MberPtr<std::string > paymentRedirectUri );
+                    Request( Mber::EntityID storeId,Mber::MberPtr<std::list<Mber::EntityID> > offers,Mber::MberPtr<std::string > paymentRedirectUri );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5065,7 +5067,7 @@ namespace Mber{
                     Mber::EntityID m_storeId;					// The store to checkout the cart from
                     Mber::MberPtr<Mber::RealMoneyInput > m_realMoneyInput;					// The real money input, if available
                 public:
-                    Request::Request( Mber::EntityID storeId,Mber::MberPtr<Mber::RealMoneyInput > realMoneyInput );
+                    Request( Mber::EntityID storeId,Mber::MberPtr<Mber::RealMoneyInput > realMoneyInput );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5090,7 +5092,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_minUpdatedTime;					// Filter by earliest updated time
                     Mber::MberPtr<uint64_t > m_maxUpdatedTime;					// Filter by latest updated time
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<Mber::InvoiceStatus > status,Mber::MberPtr<Mber::EntityID > applicationId,Mber::MberPtr<Mber::EntityID > storeId,Mber::MberPtr<uint64_t > minUpdatedTime,Mber::MberPtr<uint64_t > maxUpdatedTime );
+                    Request( std::string profileId,Mber::MberPtr<Mber::InvoiceStatus > status,Mber::MberPtr<Mber::EntityID > applicationId,Mber::MberPtr<Mber::EntityID > storeId,Mber::MberPtr<uint64_t > minUpdatedTime,Mber::MberPtr<uint64_t > maxUpdatedTime );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5114,7 +5116,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_minUpdatedTime;					// Filter by earliest updated time
                     Mber::MberPtr<uint64_t > m_maxUpdatedTime;					// Filter by latest updated time
                 public:
-                    Request::Request( Mber::MberPtr<Mber::InvoiceStatus > status,Mber::MberPtr<std::string > profileId,Mber::MberPtr<Mber::EntityID > storeId,Mber::MberPtr<uint64_t > minUpdatedTime,Mber::MberPtr<uint64_t > maxUpdatedTime );
+                    Request( Mber::MberPtr<Mber::InvoiceStatus > status,Mber::MberPtr<std::string > profileId,Mber::MberPtr<Mber::EntityID > storeId,Mber::MberPtr<uint64_t > minUpdatedTime,Mber::MberPtr<uint64_t > maxUpdatedTime );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5135,7 +5137,7 @@ namespace Mber{
                     std::string m_profileId;					// The profile to look up the preferred currency for
                     Mber::EntityID m_applicationId;					// The application to look up the preferred currency in
                 public:
-                    Request::Request( std::string profileId,Mber::EntityID applicationId );
+                    Request( std::string profileId,Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5157,7 +5159,7 @@ namespace Mber{
                     Mber::DeductionRule m_deductionRule;					// Rule to use when automatically deducting currency
                     Mber::MberPtr<int > m_walletTtl;					// The time to live, in hours, for an individual wallet lot. If unspecified, wallet lots will not expire
                 public:
-                    Request::Request( std::string name,Mber::DeductionRule deductionRule,Mber::MberPtr<int > walletTtl );
+                    Request( std::string name,Mber::DeductionRule deductionRule,Mber::MberPtr<int > walletTtl );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5175,7 +5177,7 @@ namespace Mber{
                     Mber::MberPtr<bool > m_disabledSpending;					// Flag indicating if spending is disabled
                     Mber::MberPtr<bool > m_disabledEarning;					// Flag indicating if earning is disabled
                 public:
-                    Request::Request( Mber::MberPtr<bool > disabledSpending,Mber::MberPtr<bool > disabledEarning );
+                    Request( Mber::MberPtr<bool > disabledSpending,Mber::MberPtr<bool > disabledEarning );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5192,7 +5194,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_virtualCurrencyId;					// The id of the currency to read
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId );
+                    Request( Mber::EntityID virtualCurrencyId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5213,7 +5215,7 @@ namespace Mber{
                     Mber::DeductionRule m_deductionRule;					// Rule to use when automatically deducting currency
                     Mber::MberPtr<int > m_walletTtl;					// The time to live, in hours, for an individual wallet lot. If unspecified, wallet lots will not expire
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId,std::string name,bool disabledSpending,bool disabledEarning,Mber::DeductionRule deductionRule,Mber::MberPtr<int > walletTtl );
+                    Request( Mber::EntityID virtualCurrencyId,std::string name,bool disabledSpending,bool disabledEarning,Mber::DeductionRule deductionRule,Mber::MberPtr<int > walletTtl );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5229,7 +5231,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_virtualCurrencyId;					// The id of the currency to delete
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId );
+                    Request( Mber::EntityID virtualCurrencyId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5251,7 +5253,7 @@ namespace Mber{
                     std::string m_profileId;					// The recipient of the currency
                     double m_amount;					// The amount to assign
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId,std::string profileId,double amount );
+                    Request( Mber::EntityID virtualCurrencyId,std::string profileId,double amount );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5270,7 +5272,7 @@ namespace Mber{
                     std::string m_lotId;					// The lot
                     std::string m_profileId;					// The recipient of the currency
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId,std::string lotId,std::string profileId );
+                    Request( Mber::EntityID virtualCurrencyId,std::string lotId,std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5289,7 +5291,7 @@ namespace Mber{
                     double m_amountChange;					// An amount to change the lot by; may be positive for a deposit or negative for a deduction
                     std::string m_profileId;					// The recipient of the currency
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId,std::string lotId,double amountChange,std::string profileId );
+                    Request( Mber::EntityID virtualCurrencyId,std::string lotId,double amountChange,std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5307,7 +5309,7 @@ namespace Mber{
                     Mber::EntityID m_virtualCurrencyId;					// Currency to read lots for
                     std::string m_profileId;					// Profile to lookup lots on
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId,std::string profileId );
+                    Request( Mber::EntityID virtualCurrencyId,std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5328,7 +5330,7 @@ namespace Mber{
                     std::string m_entityId;					// The ID of the entity that owns the currency
                     Mber::MberPtr<Mber::EntityType > m_entityType;					// The type of the entity that owns the currency
                 public:
-                    Request::Request( std::string entityId,Mber::MberPtr<Mber::EntityType > entityType );
+                    Request( std::string entityId,Mber::MberPtr<Mber::EntityType > entityType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5350,7 +5352,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_reason;					// An optional string that can be supplied to note the reason for the deduction
                     Mber::EntityPointer m_recipient;					// The recipient of the deduction
                 public:
-                    Request::Request( Mber::EntityID virtualCurrencyId,double amount,Mber::MberPtr<std::string > reason,Mber::EntityPointer recipient );
+                    Request( Mber::EntityID virtualCurrencyId,double amount,Mber::MberPtr<std::string > reason,Mber::EntityPointer recipient );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5370,7 +5372,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<Mber::EntityType > m_entityType;					// Optional entity type to filter by
                 public:
-                    Request::Request( Mber::MberPtr<Mber::EntityType > entityType );
+                    Request( Mber::MberPtr<Mber::EntityType > entityType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5387,7 +5389,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_addItems;					// Items to include in the catalog
                     Mber::MberPtr<std::list<Mber::EntityPointer> > m_removeItems;					// Items to exclude from the catalog
                 public:
-                    Request::Request( Mber::MberPtr<std::list<Mber::EntityPointer> > addItems,Mber::MberPtr<std::list<Mber::EntityPointer> > removeItems );
+                    Request( Mber::MberPtr<std::list<Mber::EntityPointer> > addItems,Mber::MberPtr<std::list<Mber::EntityPointer> > removeItems );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5413,7 +5415,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_notificationUri;					// The optional URI that the payment provider should use to contact Mber.
                     Mber::MberPtr<bool > m_testMode;					// The optional flag to indicate this provider is in test mode
                 public:
-                    Request::Request( Mber::RealMoneyTransactionProvider provider,Mber::MberPtr<std::string > merchantId,Mber::MberPtr<std::string > paymentPageId,Mber::MberPtr<std::string > merchantSecret,Mber::MberPtr<std::string > paymentPageUri,Mber::MberPtr<std::string > notificationUri,Mber::MberPtr<bool > testMode );
+                    Request( Mber::RealMoneyTransactionProvider provider,Mber::MberPtr<std::string > merchantId,Mber::MberPtr<std::string > paymentPageId,Mber::MberPtr<std::string > merchantSecret,Mber::MberPtr<std::string > paymentPageUri,Mber::MberPtr<std::string > notificationUri,Mber::MberPtr<bool > testMode );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5430,7 +5432,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_providerId;					// The id of the configured payment provider. The payment provider is tracked at time of purchase on the invoice.
                 public:
-                    Request::Request( std::string providerId );
+                    Request( std::string providerId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5447,7 +5449,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<bool > m_activeOnly;					// Set to true to return only active providers or false to return active and deactivated providers.
                 public:
-                    Request::Request( Mber::MberPtr<bool > activeOnly );
+                    Request( Mber::MberPtr<bool > activeOnly );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5463,7 +5465,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_providerId;					// The id of the configured payment provider to delete.
                 public:
-                    Request::Request( std::string providerId );
+                    Request( std::string providerId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5483,7 +5485,7 @@ namespace Mber{
                     Mber::EntityID m_steamApplication;					// The Steam unique identifier of the application.
                     std::string m_profileId;					// The id of the profile to be granted the steam offer.
                 public:
-                    Request::Request( Mber::EntityID steamApplication,std::string profileId );
+                    Request( Mber::EntityID steamApplication,std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5500,7 +5502,7 @@ namespace Mber{
                     Mber::EntityID m_steamApplication;					// The Steam unique identifier of the application.
                     std::string m_profileId;					// The id of the profile from which to remove the steam offer.
                 public:
-                    Request::Request( Mber::EntityID steamApplication,std::string profileId );
+                    Request( Mber::EntityID steamApplication,std::string profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5521,7 +5523,7 @@ namespace Mber{
                     std::string m_name;					// The human readable name for this affiliate
                     Mber::MberPtr<std::string > m_profileId;					// An optional profileId associated with this affiliate
                 public:
-                    Request::Request( std::string name,Mber::MberPtr<std::string > profileId );
+                    Request( std::string name,Mber::MberPtr<std::string > profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5538,7 +5540,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_affiliateId;					// The affiliate&#39;s unique identifier
                 public:
-                    Request::Request( Mber::EntityID affiliateId );
+                    Request( Mber::EntityID affiliateId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5557,7 +5559,7 @@ namespace Mber{
                     Mber::MberPtr<std::string > m_name;					// Human readable name for the affiliate
                     Mber::MberPtr<std::string > m_profileId;					// The Mber profile associated with this affiliate
                 public:
-                    Request::Request( Mber::EntityID affiliateId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > profileId );
+                    Request( Mber::EntityID affiliateId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::string > profileId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5573,7 +5575,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_affiliateId;					// The affiliate&#39;s unique identifier
                 public:
-                    Request::Request( Mber::EntityID affiliateId );
+                    Request( Mber::EntityID affiliateId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5589,7 +5591,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5609,7 +5611,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::MberPtr<bool > m_convertedOnly;					// Only count referrals that resulted in a converted/paying profile
                 public:
-                    Request::Request( Mber::MberPtr<bool > convertedOnly );
+                    Request( Mber::MberPtr<bool > convertedOnly );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5629,7 +5631,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityType m_inputType;					// The entity type of the purchase input by which to filter
                 public:
-                    Request::Request( Mber::EntityType inputType );
+                    Request( Mber::EntityType inputType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5656,7 +5658,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_userCapacity;					// The maximum number of users that can be on the server
                     Mber::MberPtr<double > m_utilization;					// The percent the server is utilized. A number between 0 and 1 allowing servers to supply their own calculation.
                 public:
-                    Request::Request( Mber::EntityID serverId,Mber::MberPtr<std::string > status,Mber::MberPtr<uint64_t > currentUsers,Mber::MberPtr<uint64_t > userCapacity,Mber::MberPtr<double > utilization );
+                    Request( Mber::EntityID serverId,Mber::MberPtr<std::string > status,Mber::MberPtr<uint64_t > currentUsers,Mber::MberPtr<uint64_t > userCapacity,Mber::MberPtr<double > utilization );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5681,7 +5683,7 @@ namespace Mber{
                     std::string m_serverType;					// The arbitrary type of the server
                     Mber::MberPtr<uint64_t > m_userCapacity;					// The maximum number of users that can be on the server
                 public:
-                    Request::Request( std::string name,std::string host,Mber::MberPtr<int > port,Mber::MberPtr<int > heartbeatInterval,std::string serverType,Mber::MberPtr<uint64_t > userCapacity );
+                    Request( std::string name,std::string host,Mber::MberPtr<int > port,Mber::MberPtr<int > heartbeatInterval,std::string serverType,Mber::MberPtr<uint64_t > userCapacity );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5698,7 +5700,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_serverId;					// The server to fetch
                 public:
-                    Request::Request( Mber::EntityID serverId );
+                    Request( Mber::EntityID serverId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5723,7 +5725,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_userCapacity;					// The maximum number of users that can be on the server
                     Mber::MberPtr<double > m_utilization;					// The percent the server is utilized. A number between 0 and 1 allowing servers to supply their own calculation.
                 public:
-                    Request::Request( Mber::EntityID serverId,std::string name,std::string host,Mber::MberPtr<int > port,Mber::MberPtr<int > heartbeatInterval,Mber::MberPtr<std::string > serverType,Mber::MberPtr<std::string > status,Mber::MberPtr<uint64_t > currentUsers,Mber::MberPtr<uint64_t > userCapacity,Mber::MberPtr<double > utilization );
+                    Request( Mber::EntityID serverId,std::string name,std::string host,Mber::MberPtr<int > port,Mber::MberPtr<int > heartbeatInterval,Mber::MberPtr<std::string > serverType,Mber::MberPtr<std::string > status,Mber::MberPtr<uint64_t > currentUsers,Mber::MberPtr<uint64_t > userCapacity,Mber::MberPtr<double > utilization );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5739,7 +5741,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_serverId;					// The server to fetch
                 public:
-                    Request::Request( Mber::EntityID serverId );
+                    Request( Mber::EntityID serverId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5768,7 +5770,7 @@ namespace Mber{
                     Mber::MberPtr<uint64_t > m_page;					// The page in the results to return. Pages start at 1.
                     Mber::MberPtr<uint64_t > m_maxResults;					// Can be used to specify the maximum number of results to return.  Will be limited to the global maximum number of results by default and may never return more than this.
                 public:
-                    Request::Request( Mber::MberPtr<std::list<std::string> > serverType,Mber::MberPtr<std::list<std::string> > status,Mber::MberPtr<Mber::ServerState > state,Mber::MberPtr<uint64_t > minUsers,Mber::MberPtr<uint64_t > maxUsers,Mber::MberPtr<uint64_t > minCapacity,Mber::MberPtr<uint64_t > maxCapacity,Mber::MberPtr<double > minUtilization,Mber::MberPtr<double > maxUtilization,Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
+                    Request( Mber::MberPtr<std::list<std::string> > serverType,Mber::MberPtr<std::list<std::string> > status,Mber::MberPtr<Mber::ServerState > state,Mber::MberPtr<uint64_t > minUsers,Mber::MberPtr<uint64_t > maxUsers,Mber::MberPtr<uint64_t > minCapacity,Mber::MberPtr<uint64_t > maxCapacity,Mber::MberPtr<double > minUtilization,Mber::MberPtr<double > maxUtilization,Mber::MberPtr<uint64_t > page,Mber::MberPtr<uint64_t > maxResults );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5790,7 +5792,7 @@ namespace Mber{
                     std::string m_name;					// Human readable name of the lobby
                     Mber::MberPtr<std::list<std::string> > m_profiles;					// Initial participants in the lobby
                 public:
-                    Request::Request( std::string serverId,std::string name,Mber::MberPtr<std::list<std::string> > profiles );
+                    Request( std::string serverId,std::string name,Mber::MberPtr<std::list<std::string> > profiles );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5807,7 +5809,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_lobbyId;					// The lobby to read
                 public:
-                    Request::Request( std::string lobbyId );
+                    Request( std::string lobbyId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5826,7 +5828,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_addProfiles;					// Profiles to add to the lobby
                     Mber::MberPtr<std::list<std::string> > m_removeProfiles;					// Profiles to remove from the lobby
                 public:
-                    Request::Request( std::string lobbyId,std::string name,Mber::MberPtr<std::list<std::string> > addProfiles,Mber::MberPtr<std::list<std::string> > removeProfiles );
+                    Request( std::string lobbyId,std::string name,Mber::MberPtr<std::list<std::string> > addProfiles,Mber::MberPtr<std::list<std::string> > removeProfiles );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5842,7 +5844,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_lobbyId;					// The lobby to delete
                 public:
-                    Request::Request( std::string lobbyId );
+                    Request( std::string lobbyId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5859,7 +5861,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_serverId;					// The server to find lobbies on
                 public:
-                    Request::Request( std::string serverId );
+                    Request( std::string serverId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5878,7 +5880,7 @@ namespace Mber{
                 };
                 class Request : public Mber::MberRequest<Response>{
                 public:
-                    Request::Request(  );
+                    Request(  );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5897,7 +5899,7 @@ namespace Mber{
                     Mber::EventType m_action;					// The type of action to update the process with.
                     Mber::MberPtr<std::list<Mber::Property> > m_properties;					// Configuration for the process to use.
                 public:
-                    Request::Request( std::string processName,Mber::MberPtr<Mber::EntityID > applicationId,Mber::EventType action,Mber::MberPtr<std::list<Mber::Property> > properties );
+                    Request( std::string processName,Mber::MberPtr<Mber::EntityID > applicationId,Mber::EventType action,Mber::MberPtr<std::list<Mber::Property> > properties );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5924,7 +5926,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::DocumentMessage > m_documentMessage;					// The message represented by documents stored in mber. If not supplied, StringBody must be supplied.
                     Mber::MberPtr<Mber::StringMessage > m_stringMessage;					// The raw message body and subject. If not supplied, DocumentBody must be supplied.
                 public:
-                    Request::Request( std::list<Mber::EntityPointer> to,std::list<Mber::EntityPointer> cc,std::list<Mber::EntityPointer> bcc,Mber::MberPtr<Mber::DocumentMessage > documentMessage,Mber::MberPtr<Mber::StringMessage > stringMessage );
+                    Request( std::list<Mber::EntityPointer> to,std::list<Mber::EntityPointer> cc,std::list<Mber::EntityPointer> bcc,Mber::MberPtr<Mber::DocumentMessage > documentMessage,Mber::MberPtr<Mber::StringMessage > stringMessage );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5944,7 +5946,7 @@ namespace Mber{
                     std::string m_profileId;					// The profile to send the email message to.
                     Mber::MberPtr<Mber::EntityID > m_applicationId;					// The optional application context through which to send the email validation message.
                 public:
-                    Request::Request( std::string profileId,Mber::MberPtr<Mber::EntityID > applicationId );
+                    Request( std::string profileId,Mber::MberPtr<Mber::EntityID > applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5960,7 +5962,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_token;					// The email validation token.
                 public:
-                    Request::Request( std::string token );
+                    Request( std::string token );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -5986,7 +5988,7 @@ namespace Mber{
                     std::string m_senderEmail;					// The from email address for outgoing messages.
                     Mber::MberPtr<std::string > m_senderName;					// The optional name that outgoing email messages will be from
                 public:
-                    Request::Request( std::string host,Mber::MberPtr<int > port,Mber::MberPtr<bool > useSsl,Mber::MberPtr<bool > useTls,Mber::MberPtr<std::string > userName,Mber::MberPtr<std::string > password,std::string senderEmail,Mber::MberPtr<std::string > senderName );
+                    Request( std::string host,Mber::MberPtr<int > port,Mber::MberPtr<bool > useSsl,Mber::MberPtr<bool > useTls,Mber::MberPtr<std::string > userName,Mber::MberPtr<std::string > password,std::string senderEmail,Mber::MberPtr<std::string > senderName );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6002,7 +6004,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The id of the application the email configuration settings correspond to.
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6019,7 +6021,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     Mber::EntityID m_applicationId;					// The id of the application the email configuration settings correspond to.
                 public:
-                    Request::Request( Mber::EntityID applicationId );
+                    Request( Mber::EntityID applicationId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6046,7 +6048,7 @@ namespace Mber{
                     Mber::EntityType m_parentType;					// Entity type of the parent in which the group is defined
                     Mber::EntityType m_groupType;					// Type of entities to be included in the group
                 public:
-                    Request::Request( std::string name,std::string parentId,Mber::EntityType parentType,Mber::EntityType groupType );
+                    Request( std::string name,std::string parentId,Mber::EntityType parentType,Mber::EntityType groupType );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6063,7 +6065,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_groupId;					// The unique identifier of the group created
                 public:
-                    Request::Request( std::string groupId );
+                    Request( std::string groupId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6083,7 +6085,7 @@ namespace Mber{
                     Mber::MberPtr<Mber::EntityType > m_groupType;					// The group type to filter by
                     Mber::MberPtr<std::string > m_name;					// The name to filter by
                 public:
-                    Request::Request( std::string parentId,Mber::EntityType parentType,Mber::MberPtr<Mber::EntityType > groupType,Mber::MberPtr<std::string > name );
+                    Request( std::string parentId,Mber::EntityType parentType,Mber::MberPtr<Mber::EntityType > groupType,Mber::MberPtr<std::string > name );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6102,7 +6104,7 @@ namespace Mber{
                     Mber::MberPtr<std::list<std::string> > m_addMembers;					// Members to add to the group
                     Mber::MberPtr<std::list<std::string> > m_removeMembers;					// Members to remove from the group
                 public:
-                    Request::Request( std::string groupId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::list<std::string> > addMembers,Mber::MberPtr<std::list<std::string> > removeMembers );
+                    Request( std::string groupId,Mber::MberPtr<std::string > name,Mber::MberPtr<std::list<std::string> > addMembers,Mber::MberPtr<std::list<std::string> > removeMembers );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6118,7 +6120,7 @@ namespace Mber{
                 class Request : public Mber::MberRequest<Response>{
                     std::string m_groupId;					// The unique identifier of the group
                 public:
-                    Request::Request( std::string groupId );
+                    Request( std::string groupId );
                     virtual MberPtr<Response> execute( std::string uri, std::string* token = 0, std::string* transactionId = 0, std::string* correlationId = 0 );
                 };
             };
@@ -6178,7 +6180,8 @@ namespace Mber{
 #ifdef MBER_DLL
 #define MBER_DLL_EXPORT(return_type) __declspec(dllexport) return_type __cdecl
 #else
-#define MBER_DLL_EXPORT(return_type) __declspec(dllimport) return_type __cdecl
+// TODO: confirm this change is correct
+#define MBER_DLL_EXPORT(return_type) return_type
 #endif
 
 #define MBER_VERSION "0.1.x"

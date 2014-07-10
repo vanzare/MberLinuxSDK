@@ -2,7 +2,7 @@
 #include "MberImpl.h"
 #include "PocoSessionWrapper.h"
 
-#include "Poco/JSON/DefaultHandler.h"
+#include "Poco/JSON/ParseHandler.h"
 #include "Poco/JSON/JSONException.h"
 #include "Poco/JSON/Parser.h"
 #include "Poco/Net/HTTPClientSession.h"
@@ -22,11 +22,11 @@ namespace
 		}
 
 		Poco::JSON::Parser parser;
-		Poco::JSON::DefaultHandler handler;
+		Poco::JSON::ParseHandler handler;
 		parser.setHandler(&handler);
 		parser.parse(json);
 		
-		const Poco::Dynamic::Var result = handler.result();
+		const Poco::Dynamic::Var result = handler.asVar();
 		return result.extract<Poco::JSON::Object::Ptr>();
 	}
 

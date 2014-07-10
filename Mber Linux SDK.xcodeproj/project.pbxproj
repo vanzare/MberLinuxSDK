@@ -7,55 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53EAE4C2196E2B0100943894 /* libeay32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD60D196E2AF300943894 /* libeay32.a */; };
-		53EAE4C3196E2B0100943894 /* ssleay32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD60F196E2AF300943894 /* ssleay32.a */; };
-		53EAE4C4196E2B0100943894 /* libeay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD612196E2AF300943894 /* libeay32MD.lib */; };
-		53EAE4C5196E2B0100943894 /* libeay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD613196E2AF300943894 /* libeay32MDd.lib */; };
-		53EAE4C6196E2B0100943894 /* libeay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD614196E2AF300943894 /* libeay32MT.lib */; };
-		53EAE4C7196E2B0100943894 /* libeay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD615196E2AF300943894 /* libeay32MTd.lib */; };
-		53EAE4C8196E2B0100943894 /* ssleay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD616196E2AF300943894 /* ssleay32MD.lib */; };
-		53EAE4C9196E2B0100943894 /* ssleay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD617196E2AF300943894 /* ssleay32MDd.lib */; };
-		53EAE4CA196E2B0100943894 /* ssleay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD618196E2AF300943894 /* ssleay32MT.lib */; };
-		53EAE4CB196E2B0100943894 /* ssleay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD619196E2AF300943894 /* ssleay32MTd.lib */; };
-		53EAE4CC196E2B0100943894 /* libeay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD61B196E2AF300943894 /* libeay32MD.lib */; };
-		53EAE4CD196E2B0100943894 /* libeay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD61C196E2AF300943894 /* libeay32MDd.lib */; };
-		53EAE4CE196E2B0100943894 /* libeay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD61D196E2AF300943894 /* libeay32MT.lib */; };
-		53EAE4CF196E2B0100943894 /* libeay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD61E196E2AF300943894 /* libeay32MTd.lib */; };
-		53EAE4D0196E2B0100943894 /* ssleay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD61F196E2AF300943894 /* ssleay32MD.lib */; };
-		53EAE4D1196E2B0100943894 /* ssleay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD620196E2AF300943894 /* ssleay32MDd.lib */; };
-		53EAE4D2196E2B0100943894 /* ssleay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD621196E2AF300943894 /* ssleay32MT.lib */; };
-		53EAE4D3196E2B0100943894 /* ssleay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD622196E2AF300943894 /* ssleay32MTd.lib */; };
-		53EAE520196E2B0100943894 /* 4758cca.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6B8196E2AF400943894 /* 4758cca.lib */; };
-		53EAE521196E2B0200943894 /* aep.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6B9196E2AF400943894 /* aep.lib */; };
-		53EAE522196E2B0200943894 /* atalla.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6BA196E2AF400943894 /* atalla.lib */; };
-		53EAE523196E2B0200943894 /* capi.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6BB196E2AF400943894 /* capi.lib */; };
-		53EAE524196E2B0200943894 /* chil.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6BC196E2AF400943894 /* chil.lib */; };
-		53EAE525196E2B0200943894 /* cswift.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6BD196E2AF400943894 /* cswift.lib */; };
-		53EAE526196E2B0200943894 /* gmp.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6BE196E2AF400943894 /* gmp.lib */; };
-		53EAE527196E2B0200943894 /* gost.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6BF196E2AF400943894 /* gost.lib */; };
-		53EAE528196E2B0200943894 /* libeay32.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C0196E2AF400943894 /* libeay32.lib */; };
-		53EAE529196E2B0200943894 /* nuron.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C1196E2AF400943894 /* nuron.lib */; };
-		53EAE52A196E2B0200943894 /* padlock.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C2196E2AF400943894 /* padlock.lib */; };
-		53EAE52B196E2B0200943894 /* ssleay32.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C3196E2AF400943894 /* ssleay32.lib */; };
-		53EAE52C196E2B0200943894 /* sureware.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C4196E2AF400943894 /* sureware.lib */; };
-		53EAE52D196E2B0200943894 /* ubsec.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C5196E2AF400943894 /* ubsec.lib */; };
-		53EAE52E196E2B0200943894 /* libeay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C7196E2AF400943894 /* libeay32MD.lib */; };
-		53EAE52F196E2B0200943894 /* libeay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C8196E2AF400943894 /* libeay32MDd.lib */; };
-		53EAE530196E2B0200943894 /* libeay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6C9196E2AF400943894 /* libeay32MT.lib */; };
-		53EAE531196E2B0200943894 /* libeay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6CA196E2AF400943894 /* libeay32MTd.lib */; };
-		53EAE532196E2B0200943894 /* ssleay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6CB196E2AF400943894 /* ssleay32MD.lib */; };
-		53EAE533196E2B0200943894 /* ssleay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6CC196E2AF400943894 /* ssleay32MDd.lib */; };
-		53EAE534196E2B0200943894 /* ssleay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6CD196E2AF400943894 /* ssleay32MT.lib */; };
-		53EAE535196E2B0200943894 /* ssleay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6CE196E2AF400943894 /* ssleay32MTd.lib */; };
-		53EAE536196E2B0200943894 /* libeay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D0196E2AF400943894 /* libeay32MD.lib */; };
-		53EAE537196E2B0200943894 /* libeay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D1196E2AF400943894 /* libeay32MDd.lib */; };
-		53EAE538196E2B0200943894 /* libeay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D2196E2AF400943894 /* libeay32MT.lib */; };
-		53EAE539196E2B0200943894 /* libeay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D3196E2AF400943894 /* libeay32MTd.lib */; };
-		53EAE53A196E2B0200943894 /* ssleay32MD.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D4196E2AF400943894 /* ssleay32MD.lib */; };
-		53EAE53B196E2B0200943894 /* ssleay32MDd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D5196E2AF400943894 /* ssleay32MDd.lib */; };
-		53EAE53C196E2B0200943894 /* ssleay32MT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D6196E2AF400943894 /* ssleay32MT.lib */; };
-		53EAE53D196E2B0200943894 /* ssleay32MTd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAD6D7196E2AF400943894 /* ssleay32MTd.lib */; };
 		53EAECA9196E2D1100943894 /* mber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAECA5196E2BF900943894 /* mber.cpp */; };
+		53EAECBD196E510500943894 /* digital_good_instance_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE44E196E2B0100943894 /* digital_good_instance_interface.cpp */; };
+		53EAECBE196E510500943894 /* digital_good_instance_list_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE44F196E2B0100943894 /* digital_good_instance_list_interface.cpp */; };
+		53EAECBF196E510500943894 /* DigitalGoodInstanceImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE450196E2B0100943894 /* DigitalGoodInstanceImpl.cpp */; };
+		53EAECC0196E510500943894 /* entity_pointer_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE453196E2B0100943894 /* entity_pointer_interface.cpp */; };
+		53EAECC1196E510500943894 /* entity_pointer_list_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE454196E2B0100943894 /* entity_pointer_list_interface.cpp */; };
+		53EAECC2196E510500943894 /* EntityPointerImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE455196E2B0100943894 /* EntityPointerImpl.cpp */; };
+		53EAECC3196E510500943894 /* mber_dll_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE458196E2B0100943894 /* mber_dll_interface.cpp */; };
+		53EAECC4196E510500943894 /* mber_json_rest_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE459196E2B0100943894 /* mber_json_rest_interface.cpp */; };
+		53EAECC5196E510500943894 /* MberImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE45A196E2B0100943894 /* MberImpl.cpp */; };
+		53EAECC6196E510500943894 /* PocoSessionWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE45E196E2B0100943894 /* PocoSessionWrapper.cpp */; };
+		53EAECC7196E510500943894 /* property_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE460196E2B0100943894 /* property_interface.cpp */; };
+		53EAECC8196E510500943894 /* property_list_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE461196E2B0100943894 /* property_list_interface.cpp */; };
+		53EAECC9196E510500943894 /* PropertyImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53EAE462196E2B0100943894 /* PropertyImpl.cpp */; };
+		53EAED30196EDE5200943894 /* libPocoCrypto.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED1A196EDE5000943894 /* libPocoCrypto.23.dylib */; };
+		53EAED31196EDE5200943894 /* libPocoCryptod.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED1B196EDE5000943894 /* libPocoCryptod.23.dylib */; };
+		53EAED32196EDE5200943894 /* libPocoData.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED1C196EDE5000943894 /* libPocoData.23.dylib */; };
+		53EAED33196EDE5200943894 /* libPocoDatad.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED1D196EDE5000943894 /* libPocoDatad.23.dylib */; };
+		53EAED34196EDE5200943894 /* libPocoDataSQLite.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED1E196EDE5000943894 /* libPocoDataSQLite.23.dylib */; };
+		53EAED35196EDE5200943894 /* libPocoDataSQLited.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED1F196EDE5000943894 /* libPocoDataSQLited.23.dylib */; };
+		53EAED36196EDE5200943894 /* libPocoFoundation.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED20196EDE5100943894 /* libPocoFoundation.23.dylib */; };
+		53EAED37196EDE5200943894 /* libPocoFoundationd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED21196EDE5100943894 /* libPocoFoundationd.23.dylib */; };
+		53EAED38196EDE5200943894 /* libPocoJSON.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED22196EDE5100943894 /* libPocoJSON.23.dylib */; };
+		53EAED39196EDE5200943894 /* libPocoJSONd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED23196EDE5100943894 /* libPocoJSONd.23.dylib */; };
+		53EAED3A196EDE5200943894 /* libPocoMongoDB.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED24196EDE5100943894 /* libPocoMongoDB.23.dylib */; };
+		53EAED3B196EDE5200943894 /* libPocoMongoDBd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED25196EDE5100943894 /* libPocoMongoDBd.23.dylib */; };
+		53EAED3C196EDE5200943894 /* libPocoNet.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED26196EDE5100943894 /* libPocoNet.23.dylib */; };
+		53EAED3D196EDE5200943894 /* libPocoNetd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED27196EDE5100943894 /* libPocoNetd.23.dylib */; };
+		53EAED3E196EDE5200943894 /* libPocoNetSSL.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED28196EDE5200943894 /* libPocoNetSSL.23.dylib */; };
+		53EAED3F196EDE5200943894 /* libPocoNetSSLd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED29196EDE5200943894 /* libPocoNetSSLd.23.dylib */; };
+		53EAED40196EDE5200943894 /* libPocoUtil.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED2A196EDE5200943894 /* libPocoUtil.23.dylib */; };
+		53EAED41196EDE5200943894 /* libPocoUtild.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED2B196EDE5200943894 /* libPocoUtild.23.dylib */; };
+		53EAED42196EDE5300943894 /* libPocoXML.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED2C196EDE5200943894 /* libPocoXML.23.dylib */; };
+		53EAED43196EDE5300943894 /* libPocoXMLd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED2D196EDE5200943894 /* libPocoXMLd.23.dylib */; };
+		53EAED44196EDE5300943894 /* libPocoZip.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED2E196EDE5200943894 /* libPocoZip.23.dylib */; };
+		53EAED45196EDE5300943894 /* libPocoZipd.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAED2F196EDE5200943894 /* libPocoZipd.23.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3529,61 +3516,57 @@
 		53EAE474196E2B0100943894 /* SessionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SessionTest.cpp; sourceTree = "<group>"; };
 		53EAECA3196E2BF900943894 /* mber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mber.h; sourceTree = "<group>"; };
 		53EAECA5196E2BF900943894 /* mber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mber.cpp; sourceTree = "<group>"; };
+		53EAED1A196EDE5000943894 /* libPocoCrypto.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCrypto.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoCrypto.23.dylib"; sourceTree = "<group>"; };
+		53EAED1B196EDE5000943894 /* libPocoCryptod.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCryptod.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoCryptod.23.dylib"; sourceTree = "<group>"; };
+		53EAED1C196EDE5000943894 /* libPocoData.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoData.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoData.23.dylib"; sourceTree = "<group>"; };
+		53EAED1D196EDE5000943894 /* libPocoDatad.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDatad.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoDatad.23.dylib"; sourceTree = "<group>"; };
+		53EAED1E196EDE5000943894 /* libPocoDataSQLite.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDataSQLite.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoDataSQLite.23.dylib"; sourceTree = "<group>"; };
+		53EAED1F196EDE5000943894 /* libPocoDataSQLited.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDataSQLited.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoDataSQLited.23.dylib"; sourceTree = "<group>"; };
+		53EAED20196EDE5100943894 /* libPocoFoundation.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoFoundation.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoFoundation.23.dylib"; sourceTree = "<group>"; };
+		53EAED21196EDE5100943894 /* libPocoFoundationd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoFoundationd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoFoundationd.23.dylib"; sourceTree = "<group>"; };
+		53EAED22196EDE5100943894 /* libPocoJSON.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoJSON.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoJSON.23.dylib"; sourceTree = "<group>"; };
+		53EAED23196EDE5100943894 /* libPocoJSONd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoJSONd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoJSONd.23.dylib"; sourceTree = "<group>"; };
+		53EAED24196EDE5100943894 /* libPocoMongoDB.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoMongoDB.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoMongoDB.23.dylib"; sourceTree = "<group>"; };
+		53EAED25196EDE5100943894 /* libPocoMongoDBd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoMongoDBd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoMongoDBd.23.dylib"; sourceTree = "<group>"; };
+		53EAED26196EDE5100943894 /* libPocoNet.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNet.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoNet.23.dylib"; sourceTree = "<group>"; };
+		53EAED27196EDE5100943894 /* libPocoNetd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoNetd.23.dylib"; sourceTree = "<group>"; };
+		53EAED28196EDE5200943894 /* libPocoNetSSL.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetSSL.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoNetSSL.23.dylib"; sourceTree = "<group>"; };
+		53EAED29196EDE5200943894 /* libPocoNetSSLd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetSSLd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoNetSSLd.23.dylib"; sourceTree = "<group>"; };
+		53EAED2A196EDE5200943894 /* libPocoUtil.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoUtil.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoUtil.23.dylib"; sourceTree = "<group>"; };
+		53EAED2B196EDE5200943894 /* libPocoUtild.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoUtild.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoUtild.23.dylib"; sourceTree = "<group>"; };
+		53EAED2C196EDE5200943894 /* libPocoXML.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoXML.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoXML.23.dylib"; sourceTree = "<group>"; };
+		53EAED2D196EDE5200943894 /* libPocoXMLd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoXMLd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoXMLd.23.dylib"; sourceTree = "<group>"; };
+		53EAED2E196EDE5200943894 /* libPocoZip.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoZip.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoZip.23.dylib"; sourceTree = "<group>"; };
+		53EAED2F196EDE5200943894 /* libPocoZipd.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoZipd.23.dylib; path = "cpp/poco-1.5.3-all/lib/Darwin/x86_64/libPocoZipd.23.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		53EABE93196E289100943894 /* Frameworks */ = {
+		53EAECAB196E483700943894 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53EAE529196E2B0200943894 /* nuron.lib in Frameworks */,
-				53EAE4C7196E2B0100943894 /* libeay32MTd.lib in Frameworks */,
-				53EAE4CA196E2B0100943894 /* ssleay32MT.lib in Frameworks */,
-				53EAE533196E2B0200943894 /* ssleay32MDd.lib in Frameworks */,
-				53EAE531196E2B0200943894 /* libeay32MTd.lib in Frameworks */,
-				53EAE4CD196E2B0100943894 /* libeay32MDd.lib in Frameworks */,
-				53EAE4D2196E2B0100943894 /* ssleay32MT.lib in Frameworks */,
-				53EAE4CE196E2B0100943894 /* libeay32MT.lib in Frameworks */,
-				53EAE4C4196E2B0100943894 /* libeay32MD.lib in Frameworks */,
-				53EAE53A196E2B0200943894 /* ssleay32MD.lib in Frameworks */,
-				53EAE4D3196E2B0100943894 /* ssleay32MTd.lib in Frameworks */,
-				53EAE53B196E2B0200943894 /* ssleay32MDd.lib in Frameworks */,
-				53EAE532196E2B0200943894 /* ssleay32MD.lib in Frameworks */,
-				53EAE538196E2B0200943894 /* libeay32MT.lib in Frameworks */,
-				53EAE4CF196E2B0100943894 /* libeay32MTd.lib in Frameworks */,
-				53EAE52D196E2B0200943894 /* ubsec.lib in Frameworks */,
-				53EAE522196E2B0200943894 /* atalla.lib in Frameworks */,
-				53EAE537196E2B0200943894 /* libeay32MDd.lib in Frameworks */,
-				53EAE4D1196E2B0100943894 /* ssleay32MDd.lib in Frameworks */,
-				53EAE4C3196E2B0100943894 /* ssleay32.a in Frameworks */,
-				53EAE52F196E2B0200943894 /* libeay32MDd.lib in Frameworks */,
-				53EAE4D0196E2B0100943894 /* ssleay32MD.lib in Frameworks */,
-				53EAE539196E2B0200943894 /* libeay32MTd.lib in Frameworks */,
-				53EAE530196E2B0200943894 /* libeay32MT.lib in Frameworks */,
-				53EAE4CC196E2B0100943894 /* libeay32MD.lib in Frameworks */,
-				53EAE520196E2B0100943894 /* 4758cca.lib in Frameworks */,
-				53EAE527196E2B0200943894 /* gost.lib in Frameworks */,
-				53EAE52E196E2B0200943894 /* libeay32MD.lib in Frameworks */,
-				53EAE53C196E2B0200943894 /* ssleay32MT.lib in Frameworks */,
-				53EAE4C2196E2B0100943894 /* libeay32.a in Frameworks */,
-				53EAE4CB196E2B0100943894 /* ssleay32MTd.lib in Frameworks */,
-				53EAE526196E2B0200943894 /* gmp.lib in Frameworks */,
-				53EAE52C196E2B0200943894 /* sureware.lib in Frameworks */,
-				53EAE521196E2B0200943894 /* aep.lib in Frameworks */,
-				53EAE535196E2B0200943894 /* ssleay32MTd.lib in Frameworks */,
-				53EAE52A196E2B0200943894 /* padlock.lib in Frameworks */,
-				53EAE4C6196E2B0100943894 /* libeay32MT.lib in Frameworks */,
-				53EAE53D196E2B0200943894 /* ssleay32MTd.lib in Frameworks */,
-				53EAE524196E2B0200943894 /* chil.lib in Frameworks */,
-				53EAE536196E2B0200943894 /* libeay32MD.lib in Frameworks */,
-				53EAE528196E2B0200943894 /* libeay32.lib in Frameworks */,
-				53EAE4C9196E2B0100943894 /* ssleay32MDd.lib in Frameworks */,
-				53EAE534196E2B0200943894 /* ssleay32MT.lib in Frameworks */,
-				53EAE523196E2B0200943894 /* capi.lib in Frameworks */,
-				53EAE52B196E2B0200943894 /* ssleay32.lib in Frameworks */,
-				53EAE4C8196E2B0100943894 /* ssleay32MD.lib in Frameworks */,
-				53EAE4C5196E2B0100943894 /* libeay32MDd.lib in Frameworks */,
-				53EAE525196E2B0200943894 /* cswift.lib in Frameworks */,
+				53EAED30196EDE5200943894 /* libPocoCrypto.23.dylib in Frameworks */,
+				53EAED31196EDE5200943894 /* libPocoCryptod.23.dylib in Frameworks */,
+				53EAED32196EDE5200943894 /* libPocoData.23.dylib in Frameworks */,
+				53EAED33196EDE5200943894 /* libPocoDatad.23.dylib in Frameworks */,
+				53EAED34196EDE5200943894 /* libPocoDataSQLite.23.dylib in Frameworks */,
+				53EAED35196EDE5200943894 /* libPocoDataSQLited.23.dylib in Frameworks */,
+				53EAED36196EDE5200943894 /* libPocoFoundation.23.dylib in Frameworks */,
+				53EAED37196EDE5200943894 /* libPocoFoundationd.23.dylib in Frameworks */,
+				53EAED38196EDE5200943894 /* libPocoJSON.23.dylib in Frameworks */,
+				53EAED39196EDE5200943894 /* libPocoJSONd.23.dylib in Frameworks */,
+				53EAED3A196EDE5200943894 /* libPocoMongoDB.23.dylib in Frameworks */,
+				53EAED3B196EDE5200943894 /* libPocoMongoDBd.23.dylib in Frameworks */,
+				53EAED3C196EDE5200943894 /* libPocoNet.23.dylib in Frameworks */,
+				53EAED3D196EDE5200943894 /* libPocoNetd.23.dylib in Frameworks */,
+				53EAED3E196EDE5200943894 /* libPocoNetSSL.23.dylib in Frameworks */,
+				53EAED3F196EDE5200943894 /* libPocoNetSSLd.23.dylib in Frameworks */,
+				53EAED40196EDE5200943894 /* libPocoUtil.23.dylib in Frameworks */,
+				53EAED41196EDE5200943894 /* libPocoUtild.23.dylib in Frameworks */,
+				53EAED42196EDE5300943894 /* libPocoXML.23.dylib in Frameworks */,
+				53EAED43196EDE5300943894 /* libPocoXMLd.23.dylib in Frameworks */,
+				53EAED44196EDE5300943894 /* libPocoZip.23.dylib in Frameworks */,
+				53EAED45196EDE5300943894 /* libPocoZipd.23.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3594,6 +3577,7 @@
 			isa = PBXGroup;
 			children = (
 				53EAD59F196E2AF300943894 /* cpp */,
+				53EAECBC196E500300943894 /* poco libs */,
 				53EABE97196E289100943894 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -9538,6 +9522,35 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		53EAECBC196E500300943894 /* poco libs */ = {
+			isa = PBXGroup;
+			children = (
+				53EAED1A196EDE5000943894 /* libPocoCrypto.23.dylib */,
+				53EAED1B196EDE5000943894 /* libPocoCryptod.23.dylib */,
+				53EAED1C196EDE5000943894 /* libPocoData.23.dylib */,
+				53EAED1D196EDE5000943894 /* libPocoDatad.23.dylib */,
+				53EAED1E196EDE5000943894 /* libPocoDataSQLite.23.dylib */,
+				53EAED1F196EDE5000943894 /* libPocoDataSQLited.23.dylib */,
+				53EAED20196EDE5100943894 /* libPocoFoundation.23.dylib */,
+				53EAED21196EDE5100943894 /* libPocoFoundationd.23.dylib */,
+				53EAED22196EDE5100943894 /* libPocoJSON.23.dylib */,
+				53EAED23196EDE5100943894 /* libPocoJSONd.23.dylib */,
+				53EAED24196EDE5100943894 /* libPocoMongoDB.23.dylib */,
+				53EAED25196EDE5100943894 /* libPocoMongoDBd.23.dylib */,
+				53EAED26196EDE5100943894 /* libPocoNet.23.dylib */,
+				53EAED27196EDE5100943894 /* libPocoNetd.23.dylib */,
+				53EAED28196EDE5200943894 /* libPocoNetSSL.23.dylib */,
+				53EAED29196EDE5200943894 /* libPocoNetSSLd.23.dylib */,
+				53EAED2A196EDE5200943894 /* libPocoUtil.23.dylib */,
+				53EAED2B196EDE5200943894 /* libPocoUtild.23.dylib */,
+				53EAED2C196EDE5200943894 /* libPocoXML.23.dylib */,
+				53EAED2D196EDE5200943894 /* libPocoXMLd.23.dylib */,
+				53EAED2E196EDE5200943894 /* libPocoZip.23.dylib */,
+				53EAED2F196EDE5200943894 /* libPocoZipd.23.dylib */,
+			);
+			name = "poco libs";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -9556,7 +9569,7 @@
 			buildConfigurationList = 53EABE9A196E289100943894 /* Build configuration list for PBXNativeTarget "Mber Linux SDK" */;
 			buildPhases = (
 				53EAECA8196E2D0000943894 /* Sources */,
-				53EABE93196E289100943894 /* Frameworks */,
+				53EAECAB196E483700943894 /* Frameworks */,
 				53EAECAA196E2D1C00943894 /* Headers */,
 			);
 			buildRules = (
@@ -9599,6 +9612,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53EAECBD196E510500943894 /* digital_good_instance_interface.cpp in Sources */,
+				53EAECBE196E510500943894 /* digital_good_instance_list_interface.cpp in Sources */,
+				53EAECBF196E510500943894 /* DigitalGoodInstanceImpl.cpp in Sources */,
+				53EAECC0196E510500943894 /* entity_pointer_interface.cpp in Sources */,
+				53EAECC1196E510500943894 /* entity_pointer_list_interface.cpp in Sources */,
+				53EAECC2196E510500943894 /* EntityPointerImpl.cpp in Sources */,
+				53EAECC3196E510500943894 /* mber_dll_interface.cpp in Sources */,
+				53EAECC4196E510500943894 /* mber_json_rest_interface.cpp in Sources */,
+				53EAECC5196E510500943894 /* MberImpl.cpp in Sources */,
+				53EAECC6196E510500943894 /* PocoSessionWrapper.cpp in Sources */,
+				53EAECC7196E510500943894 /* property_interface.cpp in Sources */,
+				53EAECC8196E510500943894 /* property_list_interface.cpp in Sources */,
+				53EAECC9196E510500943894 /* PropertyImpl.cpp in Sources */,
 				53EAECA9196E2D1100943894 /* mber.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9679,6 +9705,8 @@
 		53EABE9B196E289100943894 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9688,15 +9716,20 @@
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib",
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib/VC",
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib/VC/static",
+					"$(PROJECT_DIR)/cpp/poco-1.4.6p4/lib/Darwin/x86_64",
+					"$(PROJECT_DIR)/cpp/poco-1.4.6p4-all/lib/Darwin/x86_64",
+					"$(PROJECT_DIR)/cpp/poco-1.5.3-all/lib/Darwin/x86_64",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsg/code/gula_git/MberLinuxSDK/cpp/generated/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Net/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/JSON/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/NetSSL_OpenSSL/include/ /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Crypto/include/ /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Util/include/";
 			};
 			name = Debug;
 		};
 		53EABE9C196E289100943894 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9706,9 +9739,12 @@
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib",
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib/VC",
 					"$(PROJECT_DIR)/cpp/OpenSSL-Win64/lib/VC/static",
+					"$(PROJECT_DIR)/cpp/poco-1.4.6p4/lib/Darwin/x86_64",
+					"$(PROJECT_DIR)/cpp/poco-1.4.6p4-all/lib/Darwin/x86_64",
+					"$(PROJECT_DIR)/cpp/poco-1.5.3-all/lib/Darwin/x86_64",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.4.6p4/Foundation/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsg/code/gula_git/MberLinuxSDK/cpp/generated/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Foundation/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Net/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/JSON/include /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/NetSSL_OpenSSL/include/ /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Crypto/include/ /Users/jsg/code/gula_git/MberLinuxSDK/cpp/poco-1.5.3-all/Util/include/";
 			};
 			name = Release;
 		};

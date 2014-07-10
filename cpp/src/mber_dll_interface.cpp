@@ -58,7 +58,7 @@ namespace
 
 	void mber_strcpy(char* const dst, const int length, const std::string& src)
 	{
-		strcpy_s(dst, length, src.c_str());
+		strncpy(dst, src.c_str(), length);
 	}
 }
 
@@ -89,25 +89,25 @@ void MberShutdown()
 
 // Note: profile memory is owned by caller
 bool Profile_Read (Mber::MberSession *session, Mber::Status &status, MBER_PROFILE *profile)
-{
-	MberPtr<Profile::Read::Response> rsp = session->execute( Profile::Read::Request( *(session->getProfileId()) ) );
+{   //TODO: Correct the following line; template issue
+	MberPtr<Profile::Read::Response> rsp = 0; //session->execute( Profile::Read::Request( *(session->getProfileId()) ) );
 	if( rsp->status == Mber::Status_Success ) {
 		status = rsp->status;
 		// @TODO: Use CopyProfile()
-		strcpy_s(profile->profileId, 25, rsp->result->profileId.c_str());
-		strcpy_s(profile->accountId, 25, rsp->result->accountId.c_str());
+		mber_strcpy(profile->profileId, 25, rsp->result->profileId.c_str());
+		mber_strcpy(profile->accountId, 25, rsp->result->accountId.c_str());
 		if (!rsp->result->region.isNull()) {
 			profile->region = *rsp->result->region;
 		}
 		if (!rsp->result->username.isNull()) {
-			strcpy_s(profile->username, 256, rsp->result->username->c_str());
+			mber_strcpy(profile->username, 256, rsp->result->username->c_str());
 		}
-		strcpy_s(profile->displayname, 33, rsp->result->displayname.c_str());
+		mber_strcpy(profile->displayname, 33, rsp->result->displayname.c_str());
 		if (!rsp->result->email.isNull()) {
-			strcpy_s(profile->email, 256, (*rsp->result->email).c_str());
+			mber_strcpy(profile->email, 256, (*rsp->result->email).c_str());
 		}
 		if (!rsp->result->unvalidated_email.isNull()) {
-			strcpy_s(profile->unvalidated_email, 256, (*rsp->result->unvalidated_email).c_str());
+			mber_strcpy(profile->unvalidated_email, 256, (*rsp->result->unvalidated_email).c_str());
 		}
 		if (!rsp->result->dateOfBirth.isNull()) {
 			profile->dateOfBirth = *rsp->result->dateOfBirth;
@@ -184,7 +184,8 @@ bool Profile_Search (Mber::MberSession *session, const char *field, const char *
 	query.like->minSimilarity = new double( similarity );
 	query.like->value = name;
 
-	MberPtr<ProfileQuery::Create::Response> rsp = session->execute( ProfileQuery::Create::Request( query ) );
+    // TODO: correct the following line
+	MberPtr<ProfileQuery::Create::Response> rsp = 0; // session->execute( ProfileQuery::Create::Request( query ) );
 	if( rsp->status == Mber::Status_Success ) {
 		status = rsp->status;
 

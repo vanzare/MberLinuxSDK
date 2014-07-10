@@ -25,7 +25,7 @@
 #include "Poco/JSON/Query.h"
 #include "Poco/JSON/JSONException.h"
 #include "Poco/JSON/Stringifier.h"
-#include "Poco/JSON/DefaultHandler.h"
+#include "Poco/JSON/ParseHandler.h"
 #include "Poco/JSON/Template.h"
 #include "Poco/URI.h"
 
@@ -3869,7 +3869,7 @@ namespace Mber{
         Mber::CallingContext result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("correlationId");
         if( !next.isEmpty() ){
@@ -3894,7 +3894,7 @@ namespace Mber{
         Mber::CustomCountField result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -3906,8 +3906,9 @@ namespace Mber{
         }
         next = obj->get("time");
         if( !next.isEmpty() ){
+            // TODO: double-check type conversion here (uint64_t/UInt64/etc.)
             result.time = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.time = next;
+            *result.time = (UInt64)next;
         }
         return result;
     };
@@ -3928,7 +3929,7 @@ namespace Mber{
         Mber::EntityID result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -3959,7 +3960,7 @@ namespace Mber{
         Mber::EntityPointer result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("entityId");
         if( !next.isEmpty() ){
@@ -3993,7 +3994,7 @@ namespace Mber{
         Mber::ErrorResult result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("message");
         if( !next.isEmpty() ){
@@ -4002,7 +4003,7 @@ namespace Mber{
         next = obj->get("fields");
         if( !next.isEmpty() ){
             result.fields = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.fields->push_back(next.convert<std::string>());
@@ -4025,7 +4026,7 @@ namespace Mber{
         Mber::EventCluster result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("eventName");
         if( !next.isEmpty() ){
@@ -4038,7 +4039,7 @@ namespace Mber{
         }
         next = obj->get("totals");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.totals.push_back(jsonToCount(next));
@@ -4047,7 +4048,7 @@ namespace Mber{
         next = obj->get("events");
         if( !next.isEmpty() ){
             result.events = Mber::MberPtr<std::list<Mber::EventEnvelope>>(new std::list<Mber::EventEnvelope>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.events->push_back(jsonToEventEnvelope(next));
@@ -4056,7 +4057,7 @@ namespace Mber{
         next = obj->get("counts");
         if( !next.isEmpty() ){
             result.counts = Mber::MberPtr<std::list<Mber::CustomCountField>>(new std::list<Mber::CustomCountField>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.counts->push_back(jsonToCustomCountField(next));
@@ -4098,7 +4099,7 @@ namespace Mber{
         Mber::EventEnvelope result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("callingContext");
         if( !next.isEmpty() ){
@@ -4114,7 +4115,7 @@ namespace Mber{
         }
         next = obj->get("created");
         if( !next.isEmpty() ){
-            result.created = next;
+            result.created = (UInt64)next;
         }
         next = obj->get("decoderClass");
         if( !next.isEmpty() ){
@@ -4132,7 +4133,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::Property>>(new std::list<Mber::Property>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToProperty(next));
@@ -4172,7 +4173,7 @@ namespace Mber{
         Mber::Metric result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -4224,7 +4225,7 @@ namespace Mber{
         Mber::Permission result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("entityType");
         if( !next.isEmpty() ){
@@ -4232,7 +4233,7 @@ namespace Mber{
         }
         next = obj->get("permissions");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.permissions.push_back(jsonToPermissionType(next));
@@ -4271,7 +4272,7 @@ namespace Mber{
         Mber::ProcessEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -4284,7 +4285,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::Property>>(new std::list<Mber::Property>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToProperty(next));
@@ -4321,12 +4322,12 @@ namespace Mber{
         Mber::ProcessList result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("processesAdded");
         if( !next.isEmpty() ){
             result.processesAdded = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.processesAdded->push_back(next.convert<std::string>());
@@ -4335,7 +4336,7 @@ namespace Mber{
         next = obj->get("processesRemoved");
         if( !next.isEmpty() ){
             result.processesRemoved = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.processesRemoved->push_back(next.convert<std::string>());
@@ -4369,7 +4370,7 @@ namespace Mber{
         Mber::Property result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("key");
         if( !next.isEmpty() ){
@@ -4394,7 +4395,7 @@ namespace Mber{
         Mber::Token result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -4406,7 +4407,7 @@ namespace Mber{
         }
         next = obj->get("expires");
         if( !next.isEmpty() ){
-            result.expires = next;
+            result.expires = (UInt64)next;
         }
         next = obj->get("clientRedirectUri");
         if( !next.isEmpty() ){
@@ -4426,7 +4427,7 @@ namespace Mber{
         next = obj->get("permissions");
         if( !next.isEmpty() ){
             result.permissions = Mber::MberPtr<std::list<Mber::Permission>>(new std::list<Mber::Permission>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.permissions->push_back(jsonToPermission(next));
@@ -4472,7 +4473,7 @@ namespace Mber{
         next = obj->get("createdFrom");
         if( !next.isEmpty() ){
             result.createdFrom = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.createdFrom->push_back(next.convert<std::string>());
@@ -4486,7 +4487,7 @@ namespace Mber{
         next = obj->get("created");
         if( !next.isEmpty() ){
             result.created = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.created = next;
+            *result.created = (UInt64)next;
         }
         next = obj->get("steamId");
         if( !next.isEmpty() ){
@@ -4586,11 +4587,11 @@ namespace Mber{
         Mber::Count result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("time");
         if( !next.isEmpty() ){
-            result.time = next;
+            result.time = (UInt64)next;
         }
         next = obj->get("count");
         if( !next.isEmpty() ){
@@ -4611,7 +4612,7 @@ namespace Mber{
         Mber::FuzzyValue result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("value");
         if( !next.isEmpty() ){
@@ -4639,7 +4640,7 @@ namespace Mber{
         Mber::PrefixValue result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("value");
         if( !next.isEmpty() ){
@@ -4658,7 +4659,7 @@ namespace Mber{
         Mber::Query result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("field");
         if( !next.isEmpty() ){
@@ -4677,7 +4678,7 @@ namespace Mber{
         next = obj->get("in");
         if( !next.isEmpty() ){
             result.in = Mber::MberPtr<std::list<Mber::QueryValue>>(new std::list<Mber::QueryValue>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.in->push_back(jsonToQueryValue(next));
@@ -4686,7 +4687,7 @@ namespace Mber{
         next = obj->get("and");
         if( !next.isEmpty() ){
             result.thisAnd = Mber::MberPtr<std::list<Mber::Query>>(new std::list<Mber::Query>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.thisAnd->push_back(jsonToQuery(next));
@@ -4695,7 +4696,7 @@ namespace Mber{
         next = obj->get("or");
         if( !next.isEmpty() ){
             result.thisOr = Mber::MberPtr<std::list<Mber::Query>>(new std::list<Mber::Query>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.thisOr->push_back(jsonToQuery(next));
@@ -4761,7 +4762,7 @@ namespace Mber{
         Mber::QueryValue result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("stringValue");
         if( !next.isEmpty() ){
@@ -4801,7 +4802,7 @@ namespace Mber{
         Mber::ReplicationOperation result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -4844,7 +4845,7 @@ namespace Mber{
         Mber::SchemaVersion result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -4860,11 +4861,11 @@ namespace Mber{
         }
         next = obj->get("created");
         if( !next.isEmpty() ){
-            result.created = next;
+            result.created = (UInt64)next;
         }
         next = obj->get("updated");
         if( !next.isEmpty() ){
-            result.updated = next;
+            result.updated = (UInt64)next;
         }
         next = obj->get("shard");
         if( !next.isEmpty() ){
@@ -4893,7 +4894,7 @@ namespace Mber{
         Mber::Account result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("accountId");
         if( !next.isEmpty() ){
@@ -4905,7 +4906,7 @@ namespace Mber{
         }
         next = obj->get("status");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status.push_back(jsonToAccountStatus(next));
@@ -4924,7 +4925,7 @@ namespace Mber{
         next = obj->get("dateOfBirth");
         if( !next.isEmpty() ){
             result.dateOfBirth = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.dateOfBirth = next;
+            *result.dateOfBirth = (UInt64)next;
         }
         next = obj->get("region");
         if( !next.isEmpty() ){
@@ -5027,7 +5028,7 @@ namespace Mber{
         Mber::AnonymousUpgrade result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -5076,7 +5077,7 @@ namespace Mber{
         Mber::Application result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -5114,7 +5115,7 @@ namespace Mber{
         next = obj->get("applications");
         if( !next.isEmpty() ){
             result.applications = Mber::MberPtr<std::list<Mber::Application>>(new std::list<Mber::Application>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.applications->push_back(jsonToApplication(next));
@@ -5183,7 +5184,7 @@ namespace Mber{
         Mber::ApplicationShardAssignment result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -5223,7 +5224,7 @@ namespace Mber{
         Mber::AutomaticRoleAssignment result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("entityType");
         if( !next.isEmpty() ){
@@ -5248,7 +5249,7 @@ namespace Mber{
         Mber::Build result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("number");
         if( !next.isEmpty() ){
@@ -5261,7 +5262,7 @@ namespace Mber{
         next = obj->get("schemas");
         if( !next.isEmpty() ){
             result.schemas = Mber::MberPtr<std::list<Mber::SchemaVersion>>(new std::list<Mber::SchemaVersion>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.schemas->push_back(jsonToSchemaVersion(next));
@@ -5289,7 +5290,7 @@ namespace Mber{
         Mber::ForgotPassword result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("username");
         if( !next.isEmpty() ){
@@ -5338,7 +5339,7 @@ namespace Mber{
         Mber::ForgotUsername result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("email");
         if( !next.isEmpty() ){
@@ -5381,11 +5382,11 @@ namespace Mber{
         Mber::IPFilter result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("ipAddresses");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.ipAddresses.push_back(next.convert<std::string>());
@@ -5410,7 +5411,7 @@ namespace Mber{
         Mber::Login result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("status");
         if( !next.isEmpty() ){
@@ -5483,7 +5484,7 @@ namespace Mber{
         Mber::PasswordReset result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -5514,7 +5515,7 @@ namespace Mber{
         Mber::Persona result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("personaId");
         if( !next.isEmpty() ){
@@ -5551,7 +5552,7 @@ namespace Mber{
         Mber::Profile result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -5588,12 +5589,12 @@ namespace Mber{
         next = obj->get("dateOfBirth");
         if( !next.isEmpty() ){
             result.dateOfBirth = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.dateOfBirth = next;
+            *result.dateOfBirth = (UInt64)next;
         }
         next = obj->get("status");
         if( !next.isEmpty() ){
             result.status = Mber::MberPtr<std::list<Mber::ProfileStatus>>(new std::list<Mber::ProfileStatus>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status->push_back(jsonToProfileStatus(next));
@@ -5676,7 +5677,7 @@ namespace Mber{
         Mber::ProfileAddress result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -5755,7 +5756,7 @@ namespace Mber{
         Mber::ProfileGroup result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -5777,7 +5778,7 @@ namespace Mber{
         next = obj->get("members");
         if( !next.isEmpty() ){
             result.members = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.members->push_back(jsonToEntityPointer(next));
@@ -5785,7 +5786,7 @@ namespace Mber{
         }
         next = obj->get("status");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status.push_back(jsonToProfileGroupStatus(next));
@@ -5794,7 +5795,7 @@ namespace Mber{
         next = obj->get("size");
         if( !next.isEmpty() ){
             result.size = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.size = next;
+            *result.size = (UInt64)next;
         }
         return result;
     };
@@ -5830,7 +5831,7 @@ namespace Mber{
         Mber::ProfileReindex result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -5858,7 +5859,7 @@ namespace Mber{
         Mber::Role result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -5887,7 +5888,7 @@ namespace Mber{
         next = obj->get("permissions");
         if( !next.isEmpty() ){
             result.permissions = Mber::MberPtr<std::list<Mber::Permission>>(new std::list<Mber::Permission>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.permissions->push_back(jsonToPermission(next));
@@ -5896,7 +5897,7 @@ namespace Mber{
         next = obj->get("automaticAssignments");
         if( !next.isEmpty() ){
             result.automaticAssignments = Mber::MberPtr<std::list<Mber::AutomaticRoleAssignment>>(new std::list<Mber::AutomaticRoleAssignment>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.automaticAssignments->push_back(jsonToAutomaticRoleAssignment(next));
@@ -5945,7 +5946,7 @@ namespace Mber{
         Mber::RoleAssignment result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("roleId");
         if( !next.isEmpty() ){
@@ -5976,7 +5977,7 @@ namespace Mber{
         Mber::SteamApplication result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -6028,7 +6029,7 @@ namespace Mber{
         Mber::SteamSyncEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -6077,7 +6078,7 @@ namespace Mber{
         Mber::AchievementDefinition result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("definitionId");
         if( !next.isEmpty() ){
@@ -6089,7 +6090,7 @@ namespace Mber{
         }
         next = obj->get("status");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status.push_back(jsonToDefinitionStatus(next));
@@ -6102,7 +6103,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::AchievementPropertyDefinition>>(new std::list<Mber::AchievementPropertyDefinition>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToAchievementPropertyDefinition(next));
@@ -6111,7 +6112,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -6147,7 +6148,7 @@ namespace Mber{
         Mber::AchievementInstance result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -6170,7 +6171,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::Property>>(new std::list<Mber::Property>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToProperty(next));
@@ -6179,7 +6180,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -6219,7 +6220,7 @@ namespace Mber{
         Mber::AchievementPropertyDefinition result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -6253,7 +6254,7 @@ namespace Mber{
         Mber::Campaign result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("campaignId");
         if( !next.isEmpty() ){
@@ -6317,7 +6318,7 @@ namespace Mber{
         Mber::Definition result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("definitionId");
         if( !next.isEmpty() ){
@@ -6329,7 +6330,7 @@ namespace Mber{
         }
         next = obj->get("status");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status.push_back(jsonToDefinitionStatus(next));
@@ -6346,7 +6347,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::EntitlementPropertyDefinition>>(new std::list<Mber::EntitlementPropertyDefinition>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToEntitlementPropertyDefinition(next));
@@ -6360,7 +6361,7 @@ namespace Mber{
         next = obj->get("setStatuses");
         if( !next.isEmpty() ){
             result.setStatuses = Mber::MberPtr<std::list<Mber::DefinitionStatus>>(new std::list<Mber::DefinitionStatus>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.setStatuses->push_back(jsonToDefinitionStatus(next));
@@ -6369,7 +6370,7 @@ namespace Mber{
         next = obj->get("unsetStatuses");
         if( !next.isEmpty() ){
             result.unsetStatuses = Mber::MberPtr<std::list<Mber::DefinitionStatus>>(new std::list<Mber::DefinitionStatus>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.unsetStatuses->push_back(jsonToDefinitionStatus(next));
@@ -6378,7 +6379,7 @@ namespace Mber{
         next = obj->get("redeemableFor");
         if( !next.isEmpty() ){
             result.redeemableFor = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.redeemableFor->push_back(next.convert<std::string>());
@@ -6387,12 +6388,12 @@ namespace Mber{
         next = obj->get("ttl");
         if( !next.isEmpty() ){
             result.ttl = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.ttl = next;
+            *result.ttl = (UInt64)next;
         }
         next = obj->get("selfGrantCount");
         if( !next.isEmpty() ){
             result.selfGrantCount = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.selfGrantCount = next;
+            *result.selfGrantCount = (UInt64)next;
         }
         next = obj->get("emailOnGrant");
         if( !next.isEmpty() ){
@@ -6407,7 +6408,7 @@ namespace Mber{
         next = obj->get("redemptionRewards");
         if( !next.isEmpty() ){
             result.redemptionRewards = Mber::MberPtr<std::list<Mber::Reward>>(new std::list<Mber::Reward>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.redemptionRewards->push_back(jsonToReward(next));
@@ -6416,7 +6417,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -6493,7 +6494,7 @@ namespace Mber{
         Mber::DigitalGoodDefinition result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("definitionId");
         if( !next.isEmpty() ){
@@ -6505,7 +6506,7 @@ namespace Mber{
         }
         next = obj->get("status");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status.push_back(jsonToDefinitionStatus(next));
@@ -6527,7 +6528,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::DigitalGoodPropertyDefinition>>(new std::list<Mber::DigitalGoodPropertyDefinition>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToDigitalGoodPropertyDefinition(next));
@@ -6536,7 +6537,7 @@ namespace Mber{
         next = obj->get("redeemableFor");
         if( !next.isEmpty() ){
             result.redeemableFor = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.redeemableFor->push_back(jsonToEntityPointer(next));
@@ -6545,12 +6546,12 @@ namespace Mber{
         next = obj->get("ttl");
         if( !next.isEmpty() ){
             result.ttl = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.ttl = next;
+            *result.ttl = (UInt64)next;
         }
         next = obj->get("selfGrantCount");
         if( !next.isEmpty() ){
             result.selfGrantCount = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.selfGrantCount = next;
+            *result.selfGrantCount = (UInt64)next;
         }
         next = obj->get("emailOnGrant");
         if( !next.isEmpty() ){
@@ -6565,7 +6566,7 @@ namespace Mber{
         next = obj->get("redemptionRewards");
         if( !next.isEmpty() ){
             result.redemptionRewards = Mber::MberPtr<std::list<Mber::Reward>>(new std::list<Mber::Reward>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.redemptionRewards->push_back(jsonToReward(next));
@@ -6574,7 +6575,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -6646,7 +6647,7 @@ namespace Mber{
         Mber::DigitalGoodInstance result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -6678,7 +6679,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::Property>>(new std::list<Mber::Property>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToProperty(next));
@@ -6707,7 +6708,7 @@ namespace Mber{
         next = obj->get("expiresOn");
         if( !next.isEmpty() ){
             result.expiresOn = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.expiresOn = next;
+            *result.expiresOn = (UInt64)next;
         }
         next = obj->get("selfGranted");
         if( !next.isEmpty() ){
@@ -6732,7 +6733,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -6814,7 +6815,7 @@ namespace Mber{
         Mber::DigitalGoodPropertyDefinition result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -6854,7 +6855,7 @@ namespace Mber{
         Mber::EarnedAchievements result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("entity");
         if( !next.isEmpty() ){
@@ -6862,7 +6863,7 @@ namespace Mber{
         }
         next = obj->get("achievements");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.achievements.push_back(jsonToAchievementInstance(next));
@@ -6886,7 +6887,7 @@ namespace Mber{
         Mber::EntitlementInstance result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("id");
         if( !next.isEmpty() ){
@@ -6917,7 +6918,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::Property>>(new std::list<Mber::Property>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToProperty(next));
@@ -6946,7 +6947,7 @@ namespace Mber{
         next = obj->get("expiresOn");
         if( !next.isEmpty() ){
             result.expiresOn = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.expiresOn = next;
+            *result.expiresOn = (UInt64)next;
         }
         next = obj->get("selfGranted");
         if( !next.isEmpty() ){
@@ -6956,7 +6957,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -7024,7 +7025,7 @@ namespace Mber{
         Mber::EntitlementPropertyDefinition result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -7064,7 +7065,7 @@ namespace Mber{
         Mber::Keys result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("campaignId");
         if( !next.isEmpty() ){
@@ -7107,7 +7108,7 @@ namespace Mber{
         Mber::RedemptionEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("instanceId");
         if( !next.isEmpty() ){
@@ -7131,7 +7132,7 @@ namespace Mber{
         }
         next = obj->get("redemptionRewards");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.redemptionRewards.push_back(jsonToReward(next));
@@ -7169,7 +7170,7 @@ namespace Mber{
         Mber::Reward result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("item");
         if( !next.isEmpty() ){
@@ -7194,7 +7195,7 @@ namespace Mber{
         Mber::CDNConfig result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -7276,7 +7277,7 @@ namespace Mber{
         Mber::CDNSyncEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -7319,7 +7320,7 @@ namespace Mber{
         Mber::DataEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -7356,7 +7357,7 @@ namespace Mber{
         Mber::Directory result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -7388,7 +7389,7 @@ namespace Mber{
         next = obj->get("directories");
         if( !next.isEmpty() ){
             result.directories = Mber::MberPtr<std::list<Mber::Directory>>(new std::list<Mber::Directory>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.directories->push_back(jsonToDirectory(next));
@@ -7397,7 +7398,7 @@ namespace Mber{
         next = obj->get("documents");
         if( !next.isEmpty() ){
             result.documents = Mber::MberPtr<std::list<Mber::Document>>(new std::list<Mber::Document>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.documents->push_back(jsonToDocument(next));
@@ -7446,7 +7447,7 @@ namespace Mber{
         Mber::Document result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -7475,7 +7476,7 @@ namespace Mber{
         next = obj->get("tags");
         if( !next.isEmpty() ){
             result.tags = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.tags->push_back(next.convert<std::string>());
@@ -7484,7 +7485,7 @@ namespace Mber{
         next = obj->get("properties");
         if( !next.isEmpty() ){
             result.properties = Mber::MberPtr<std::list<Mber::Property>>(new std::list<Mber::Property>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties->push_back(jsonToProperty(next));
@@ -7513,7 +7514,7 @@ namespace Mber{
         next = obj->get("size");
         if( !next.isEmpty() ){
             result.size = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.size = next;
+            *result.size = (UInt64)next;
         }
         next = obj->get("canDownload");
         if( !next.isEmpty() ){
@@ -7528,7 +7529,7 @@ namespace Mber{
         next = obj->get("status");
         if( !next.isEmpty() ){
             result.status = Mber::MberPtr<std::list<Mber::DocumentStatus>>(new std::list<Mber::DocumentStatus>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status->push_back(jsonToDocumentStatus(next));
@@ -7633,7 +7634,7 @@ namespace Mber{
         Mber::DocumentHistoryConfiguration result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -7676,7 +7677,7 @@ namespace Mber{
         Mber::DocumentReindex result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -7713,7 +7714,7 @@ namespace Mber{
         Mber::DocumentTemplate result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("documentTemplateId");
         if( !next.isEmpty() ){
@@ -7736,7 +7737,7 @@ namespace Mber{
         next = obj->get("size");
         if( !next.isEmpty() ){
             result.size = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.size = next;
+            *result.size = (UInt64)next;
         }
         next = obj->get("version");
         if( !next.isEmpty() ){
@@ -7792,7 +7793,7 @@ namespace Mber{
         Mber::DocumentVersion result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("documentId");
         if( !next.isEmpty() ){
@@ -7805,7 +7806,7 @@ namespace Mber{
         next = obj->get("created");
         if( !next.isEmpty() ){
             result.created = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.created = next;
+            *result.created = (UInt64)next;
         }
         return result;
     };
@@ -7826,7 +7827,7 @@ namespace Mber{
         Mber::S3BucketConfig result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("bucketConfigId");
         if( !next.isEmpty() ){
@@ -7869,7 +7870,7 @@ namespace Mber{
         Mber::TemplateField result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("fieldType");
         if( !next.isEmpty() ){
@@ -7924,7 +7925,7 @@ namespace Mber{
         Mber::Provider result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -7955,7 +7956,7 @@ namespace Mber{
         Mber::EventPointer result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -7971,7 +7972,7 @@ namespace Mber{
         }
         next = obj->get("created");
         if( !next.isEmpty() ){
-            result.created = next;
+            result.created = (UInt64)next;
         }
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -8001,7 +8002,7 @@ namespace Mber{
         Mber::ReconciledEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("name");
         if( !next.isEmpty() ){
@@ -8022,7 +8023,7 @@ namespace Mber{
         next = obj->get("lastReconciled");
         if( !next.isEmpty() ){
             result.lastReconciled = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.lastReconciled = next;
+            *result.lastReconciled = (UInt64)next;
         }
         return result;
     };
@@ -8047,7 +8048,7 @@ namespace Mber{
         Mber::AvailableEvent result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("eventName");
         if( !next.isEmpty() ){
@@ -8056,7 +8057,7 @@ namespace Mber{
         next = obj->get("types");
         if( !next.isEmpty() ){
             result.types = Mber::MberPtr<std::list<Mber::EventType>>(new std::list<Mber::EventType>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.types->push_back(jsonToEventType(next));
@@ -8079,7 +8080,7 @@ namespace Mber{
         Mber::AdyenCallback result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -8236,7 +8237,7 @@ namespace Mber{
         Mber::Affiliate result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("affiliateId");
         if( !next.isEmpty() ){
@@ -8258,7 +8259,7 @@ namespace Mber{
         next = obj->get("status");
         if( !next.isEmpty() ){
             result.status = Mber::MberPtr<std::list<Mber::AffiliateStatus>>(new std::list<Mber::AffiliateStatus>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.status->push_back(jsonToAffiliateStatus(next));
@@ -8289,7 +8290,7 @@ namespace Mber{
         Mber::BoaCompraCallback result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("storeId");
         if( !next.isEmpty() ){
@@ -8383,7 +8384,7 @@ namespace Mber{
         Mber::Catalog result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -8392,7 +8393,7 @@ namespace Mber{
         next = obj->get("addItems");
         if( !next.isEmpty() ){
             result.addItems = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.addItems->push_back(jsonToEntityPointer(next));
@@ -8401,7 +8402,7 @@ namespace Mber{
         next = obj->get("removeItems");
         if( !next.isEmpty() ){
             result.removeItems = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.removeItems->push_back(jsonToEntityPointer(next));
@@ -8434,7 +8435,7 @@ namespace Mber{
         Mber::DeductionRule result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("priority");
         if( !next.isEmpty() ){
@@ -8459,7 +8460,7 @@ namespace Mber{
         Mber::EntityTotal result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("total");
         if( !next.isEmpty() ){
@@ -8484,7 +8485,7 @@ namespace Mber{
         Mber::Invoice result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("invoiceId");
         if( !next.isEmpty() ){
@@ -8510,7 +8511,7 @@ namespace Mber{
         next = obj->get("paymentProviders");
         if( !next.isEmpty() ){
             result.paymentProviders = Mber::MberPtr<std::list<Mber::PaymentProvider>>(new std::list<Mber::PaymentProvider>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.paymentProviders->push_back(jsonToPaymentProvider(next));
@@ -8519,7 +8520,7 @@ namespace Mber{
         next = obj->get("offers");
         if( !next.isEmpty() ){
             result.offers = Mber::MberPtr<std::list<Mber::Offer>>(new std::list<Mber::Offer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.offers->push_back(jsonToOffer(next));
@@ -8528,7 +8529,7 @@ namespace Mber{
         next = obj->get("expectedInputs");
         if( !next.isEmpty() ){
             result.expectedInputs = Mber::MberPtr<std::list<Mber::InvoiceExpectedItem>>(new std::list<Mber::InvoiceExpectedItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.expectedInputs->push_back(jsonToInvoiceExpectedItem(next));
@@ -8537,7 +8538,7 @@ namespace Mber{
         next = obj->get("expectedOutputs");
         if( !next.isEmpty() ){
             result.expectedOutputs = Mber::MberPtr<std::list<Mber::InvoiceExpectedItem>>(new std::list<Mber::InvoiceExpectedItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.expectedOutputs->push_back(jsonToInvoiceExpectedItem(next));
@@ -8551,12 +8552,12 @@ namespace Mber{
         next = obj->get("createdTime");
         if( !next.isEmpty() ){
             result.createdTime = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.createdTime = next;
+            *result.createdTime = (UInt64)next;
         }
         next = obj->get("updatedTime");
         if( !next.isEmpty() ){
             result.updatedTime = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.updatedTime = next;
+            *result.updatedTime = (UInt64)next;
         }
         return result;
     };
@@ -8621,7 +8622,7 @@ namespace Mber{
         Mber::InvoiceActualItem result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("itemId");
         if( !next.isEmpty() ){
@@ -8655,7 +8656,7 @@ namespace Mber{
         Mber::InvoiceExpectedItem result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("item");
         if( !next.isEmpty() ){
@@ -8672,7 +8673,7 @@ namespace Mber{
         next = obj->get("actualItems");
         if( !next.isEmpty() ){
             result.actualItems = Mber::MberPtr<std::list<Mber::InvoiceActualItem>>(new std::list<Mber::InvoiceActualItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.actualItems->push_back(jsonToInvoiceActualItem(next));
@@ -8711,7 +8712,7 @@ namespace Mber{
         Mber::InvoicePurchase result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("currencyCode");
         if( !next.isEmpty() ){
@@ -8747,7 +8748,7 @@ namespace Mber{
         next = obj->get("offers");
         if( !next.isEmpty() ){
             result.offers = Mber::MberPtr<std::list<Mber::Offer>>(new std::list<Mber::Offer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.offers->push_back(jsonToOffer(next));
@@ -8756,7 +8757,7 @@ namespace Mber{
         next = obj->get("expectedInputs");
         if( !next.isEmpty() ){
             result.expectedInputs = Mber::MberPtr<std::list<Mber::InvoiceExpectedItem>>(new std::list<Mber::InvoiceExpectedItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.expectedInputs->push_back(jsonToInvoiceExpectedItem(next));
@@ -8765,7 +8766,7 @@ namespace Mber{
         next = obj->get("expectedOutputs");
         if( !next.isEmpty() ){
             result.expectedOutputs = Mber::MberPtr<std::list<Mber::InvoiceExpectedItem>>(new std::list<Mber::InvoiceExpectedItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.expectedOutputs->push_back(jsonToInvoiceExpectedItem(next));
@@ -8832,7 +8833,7 @@ namespace Mber{
         Mber::InvoiceStatusSummary result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("invoiceId");
         if( !next.isEmpty() ){
@@ -8878,7 +8879,7 @@ namespace Mber{
         Mber::MerchantReference result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -8909,7 +8910,7 @@ namespace Mber{
         Mber::Offer result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("offerId");
         if( !next.isEmpty() ){
@@ -8931,7 +8932,7 @@ namespace Mber{
         next = obj->get("inputs");
         if( !next.isEmpty() ){
             result.inputs = Mber::MberPtr<std::list<Mber::OfferItem>>(new std::list<Mber::OfferItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.inputs->push_back(jsonToOfferItem(next));
@@ -8940,7 +8941,7 @@ namespace Mber{
         next = obj->get("outputs");
         if( !next.isEmpty() ){
             result.outputs = Mber::MberPtr<std::list<Mber::OfferItem>>(new std::list<Mber::OfferItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.outputs->push_back(jsonToOfferItem(next));
@@ -8949,7 +8950,7 @@ namespace Mber{
         next = obj->get("categories");
         if( !next.isEmpty() ){
             result.categories = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.categories->push_back(next.convert<std::string>());
@@ -8958,7 +8959,7 @@ namespace Mber{
         next = obj->get("rewards");
         if( !next.isEmpty() ){
             result.rewards = Mber::MberPtr<std::list<Mber::OfferItem>>(new std::list<Mber::OfferItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.rewards->push_back(jsonToOfferItem(next));
@@ -9010,7 +9011,7 @@ namespace Mber{
         Mber::OfferItem result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("item");
         if( !next.isEmpty() ){
@@ -9044,7 +9045,7 @@ namespace Mber{
         Mber::OfferPurchase result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("offerId");
         if( !next.isEmpty() ){
@@ -9061,7 +9062,7 @@ namespace Mber{
         next = obj->get("inputs");
         if( !next.isEmpty() ){
             result.inputs = Mber::MberPtr<std::list<Mber::OfferItem>>(new std::list<Mber::OfferItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.inputs->push_back(jsonToOfferItem(next));
@@ -9070,7 +9071,7 @@ namespace Mber{
         next = obj->get("outputs");
         if( !next.isEmpty() ){
             result.outputs = Mber::MberPtr<std::list<Mber::OfferItem>>(new std::list<Mber::OfferItem>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.outputs->push_back(jsonToOfferItem(next));
@@ -9113,7 +9114,7 @@ namespace Mber{
         Mber::PaymentProvider result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("provider");
         if( !next.isEmpty() ){
@@ -9207,7 +9208,7 @@ namespace Mber{
         Mber::RealCurrency result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("currencyId");
         if( !next.isEmpty() ){
@@ -9238,7 +9239,7 @@ namespace Mber{
         Mber::RealMoneyInput result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("provider");
         if( !next.isEmpty() ){
@@ -9272,7 +9273,7 @@ namespace Mber{
         Mber::Referral result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("referrerId");
         if( !next.isEmpty() ){
@@ -9303,7 +9304,7 @@ namespace Mber{
         Mber::ReferralCount result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("count");
         if( !next.isEmpty() ){
@@ -9328,7 +9329,7 @@ namespace Mber{
         Mber::ReferralEntityTotals result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("referrer");
         if( !next.isEmpty() ){
@@ -9336,7 +9337,7 @@ namespace Mber{
         }
         next = obj->get("totals");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.totals.push_back(jsonToEntityTotal(next));
@@ -9360,7 +9361,7 @@ namespace Mber{
         Mber::Store result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("storeId");
         if( !next.isEmpty() ){
@@ -9377,7 +9378,7 @@ namespace Mber{
         next = obj->get("offers");
         if( !next.isEmpty() ){
             result.offers = Mber::MberPtr<std::list<Mber::Offer>>(new std::list<Mber::Offer>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.offers->push_back(jsonToOffer(next));
@@ -9407,7 +9408,7 @@ namespace Mber{
         Mber::VirtualCurrency result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("virtualCurrencyId");
         if( !next.isEmpty() ){
@@ -9465,7 +9466,7 @@ namespace Mber{
         Mber::VirtualCurrencyChange result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("virtualCurrencyId");
         if( !next.isEmpty() ){
@@ -9502,7 +9503,7 @@ namespace Mber{
         Mber::VirtualPurchase result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("virtualCurrency");
         if( !next.isEmpty() ){
@@ -9523,7 +9524,7 @@ namespace Mber{
         }
         next = obj->get("walletLots");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.walletLots.push_back(jsonToWalletLot(next));
@@ -9579,7 +9580,7 @@ namespace Mber{
         Mber::Wallet result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("profileId");
         if( !next.isEmpty() ){
@@ -9592,7 +9593,7 @@ namespace Mber{
         next = obj->get("funds");
         if( !next.isEmpty() ){
             result.funds = Mber::MberPtr<std::list<Mber::WalletTotal>>(new std::list<Mber::WalletTotal>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.funds->push_back(jsonToWalletTotal(next));
@@ -9626,7 +9627,7 @@ namespace Mber{
         Mber::WalletLot result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("lotId");
         if( !next.isEmpty() ){
@@ -9650,7 +9651,7 @@ namespace Mber{
         }
         next = obj->get("timeCreated");
         if( !next.isEmpty() ){
-            result.timeCreated = next;
+            result.timeCreated = (UInt64)next;
         }
         next = obj->get("amountChange");
         if( !next.isEmpty() ){
@@ -9684,7 +9685,7 @@ namespace Mber{
         Mber::WalletTotal result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("virtualCurrencyId");
         if( !next.isEmpty() ){
@@ -9715,7 +9716,7 @@ namespace Mber{
         Mber::Heartbeat result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("serverId");
         if( !next.isEmpty() ){
@@ -9728,17 +9729,17 @@ namespace Mber{
         }
         next = obj->get("time");
         if( !next.isEmpty() ){
-            result.time = next;
+            result.time = (UInt64)next;
         }
         next = obj->get("currentUsers");
         if( !next.isEmpty() ){
             result.currentUsers = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.currentUsers = next;
+            *result.currentUsers = (UInt64)next;
         }
         next = obj->get("userCapacity");
         if( !next.isEmpty() ){
             result.userCapacity = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.userCapacity = next;
+            *result.userCapacity = (UInt64)next;
         }
         next = obj->get("utilization");
         if( !next.isEmpty() ){
@@ -9776,7 +9777,7 @@ namespace Mber{
         Mber::Lobby result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("lobbyId");
         if( !next.isEmpty() ){
@@ -9793,7 +9794,7 @@ namespace Mber{
         next = obj->get("profiles");
         if( !next.isEmpty() ){
             result.profiles = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.profiles->push_back(next.convert<std::string>());
@@ -9802,7 +9803,7 @@ namespace Mber{
         next = obj->get("addProfiles");
         if( !next.isEmpty() ){
             result.addProfiles = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.addProfiles->push_back(next.convert<std::string>());
@@ -9811,7 +9812,7 @@ namespace Mber{
         next = obj->get("removeProfiles");
         if( !next.isEmpty() ){
             result.removeProfiles = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.removeProfiles->push_back(next.convert<std::string>());
@@ -9846,7 +9847,7 @@ namespace Mber{
         Mber::Server result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("serverId");
         if( !next.isEmpty() ){
@@ -9895,12 +9896,12 @@ namespace Mber{
         next = obj->get("currentUsers");
         if( !next.isEmpty() ){
             result.currentUsers = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.currentUsers = next;
+            *result.currentUsers = (UInt64)next;
         }
         next = obj->get("userCapacity");
         if( !next.isEmpty() ){
             result.userCapacity = Mber::MberPtr<uint64_t>(new uint64_t);
-            *result.userCapacity = next;
+            *result.userCapacity = (UInt64)next;
         }
         next = obj->get("utilization");
         if( !next.isEmpty() ){
@@ -9958,11 +9959,11 @@ namespace Mber{
         Mber::DocumentMessage result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("documentIds");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.documentIds.push_back(next.convert<std::string>());
@@ -9970,7 +9971,7 @@ namespace Mber{
         }
         next = obj->get("properties");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.properties.push_back(jsonToReplacementProperty(next));
@@ -10003,7 +10004,7 @@ namespace Mber{
         Mber::EmailConfig result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -10082,7 +10083,7 @@ namespace Mber{
         Mber::EmailMessage result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("applicationId");
         if( !next.isEmpty() ){
@@ -10090,7 +10091,7 @@ namespace Mber{
         }
         next = obj->get("to");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.to.push_back(jsonToEntityPointer(next));
@@ -10098,7 +10099,7 @@ namespace Mber{
         }
         next = obj->get("cc");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.cc.push_back(jsonToEntityPointer(next));
@@ -10106,7 +10107,7 @@ namespace Mber{
         }
         next = obj->get("bcc");
         if( !next.isEmpty() ){
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.bcc.push_back(jsonToEntityPointer(next));
@@ -10167,7 +10168,7 @@ namespace Mber{
         Mber::ReplacementProperty result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("variable");
         if( !next.isEmpty() ){
@@ -10201,7 +10202,7 @@ namespace Mber{
         Mber::StringMessage result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("subject");
         if( !next.isEmpty() ){
@@ -10229,7 +10230,7 @@ namespace Mber{
         Mber::Group result;
         Object::Ptr obj = json.extract<Object::Ptr>();
         Var next;
-        bool empty = false;
+        // bool empty = false;
         
         next = obj->get("groupId");
         if( !next.isEmpty() ){
@@ -10254,7 +10255,7 @@ namespace Mber{
         next = obj->get("members");
         if( !next.isEmpty() ){
             result.members = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.members->push_back(next.convert<std::string>());
@@ -10263,7 +10264,7 @@ namespace Mber{
         next = obj->get("addMembers");
         if( !next.isEmpty() ){
             result.addMembers = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.addMembers->push_back(next.convert<std::string>());
@@ -10272,7 +10273,7 @@ namespace Mber{
         next = obj->get("removeMembers");
         if( !next.isEmpty() ){
             result.removeMembers = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-            Array::Ptr nextArray = next.extract<Array::Ptr>();
+            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
             for( int i=0; i<nextArray->size(); i++ ){
                 next = nextArray->get(i);
                 result.removeMembers->push_back(next.convert<std::string>());
@@ -10316,22 +10317,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         accountId = 0;
                         masterProfileId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -10547,10 +10548,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -10575,21 +10576,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -10665,10 +10666,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -10695,21 +10696,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -10785,10 +10787,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -10813,20 +10815,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11004,10 +11006,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11032,20 +11034,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
-                      status = someStatus;
-                      errorMessage = someError;
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
+                        status = someStatus;
+                        errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11119,10 +11121,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11147,21 +11149,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11171,7 +11173,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Profile>>(new std::list<Mber::Profile>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToProfile(next));
@@ -11253,10 +11255,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11283,20 +11285,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11370,10 +11372,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11398,20 +11400,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11485,10 +11487,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11515,21 +11517,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11539,7 +11541,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Profile>>(new std::list<Mber::Profile>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToProfile(next));
@@ -11613,10 +11615,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11643,21 +11645,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11667,7 +11669,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::ProfileAddress>>(new std::list<Mber::ProfileAddress>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToProfileAddress(next));
@@ -11737,10 +11739,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11765,20 +11767,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -11943,10 +11945,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11971,20 +11973,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12071,10 +12073,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12101,21 +12103,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         personaId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12208,10 +12210,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12236,21 +12238,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12326,10 +12328,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12354,21 +12356,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12378,7 +12380,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Persona>>(new std::list<Mber::Persona>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToPersona(next));
@@ -12470,10 +12472,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12498,20 +12500,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12598,10 +12600,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12626,20 +12628,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12713,10 +12715,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12743,21 +12745,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12767,7 +12769,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Persona>>(new std::list<Mber::Persona>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToPersona(next));
@@ -12841,10 +12843,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12871,21 +12873,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -12895,7 +12897,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Region>>(new std::list<Mber::Region>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToRegion(next));
@@ -12959,10 +12961,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12989,20 +12991,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13102,10 +13104,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13130,20 +13132,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13230,10 +13232,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13260,20 +13262,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13360,10 +13362,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13388,20 +13390,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13475,10 +13477,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13503,16 +13505,16 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         scope = 0;
                         access_token = 0;
                         token_type = 0;
@@ -13524,7 +13526,7 @@ namespace Mber{
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13659,10 +13661,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13689,20 +13691,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13802,10 +13804,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13832,21 +13834,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -13856,7 +13858,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEntityPointer(next));
@@ -13930,10 +13932,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13960,20 +13962,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14060,10 +14062,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14090,20 +14092,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14190,10 +14192,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14220,20 +14222,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14333,10 +14335,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14363,20 +14365,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14476,10 +14478,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14504,20 +14506,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14617,10 +14619,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14647,21 +14649,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14743,10 +14745,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14771,21 +14773,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14795,7 +14797,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Token>>(new std::list<Mber::Token>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToToken(next));
@@ -14870,10 +14872,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14898,20 +14900,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -14985,10 +14987,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15017,21 +15019,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         applicationId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -15189,10 +15191,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15217,20 +15219,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -15382,10 +15384,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15410,21 +15412,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -15434,7 +15436,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Application>>(new std::list<Mber::Application>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToApplication(next));
@@ -15504,10 +15506,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15532,20 +15534,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -15619,10 +15621,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15647,21 +15649,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -15732,10 +15734,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15762,20 +15764,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -15875,10 +15877,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15907,16 +15909,16 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         authorization_code = 0;
                         scope = 0;
                         accountId = 0;
@@ -15929,7 +15931,7 @@ namespace Mber{
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -16122,10 +16124,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16152,16 +16154,16 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         scope = 0;
                         access_token = 0;
                         token_type = 0;
@@ -16177,7 +16179,7 @@ namespace Mber{
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -16427,10 +16429,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16457,16 +16459,16 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         clientToken = 0;
                         scope = 0;
                         accountId = 0;
@@ -16479,7 +16481,7 @@ namespace Mber{
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -16525,7 +16527,7 @@ namespace Mber{
                         next = obj->get("ownerHas");
                         if( !next.isEmpty() ){
                             ownerHas = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 ownerHas->push_back(jsonToEntityPointer(next));
@@ -16656,10 +16658,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16688,21 +16690,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         profileGroupId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -16814,10 +16816,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16842,21 +16844,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -16927,10 +16929,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16955,21 +16957,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -16979,7 +16981,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::ProfileGroup>>(new std::list<Mber::ProfileGroup>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToProfileGroup(next));
@@ -17043,10 +17045,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17071,20 +17073,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17235,10 +17237,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17263,20 +17265,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17350,10 +17352,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17380,21 +17382,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17404,7 +17406,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEntityPointer(next));
@@ -17474,10 +17476,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17504,21 +17506,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17528,7 +17530,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::ProfileGroup>>(new std::list<Mber::ProfileGroup>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToProfileGroup(next));
@@ -17602,10 +17604,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17634,21 +17636,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         roleId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17818,10 +17820,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17846,21 +17848,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17931,10 +17933,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17959,21 +17961,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -17983,7 +17985,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Role>>(new std::list<Mber::Role>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToRole(next));
@@ -18059,10 +18061,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18087,20 +18089,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -18277,10 +18279,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18305,20 +18307,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -18392,10 +18394,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18422,20 +18424,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -18548,10 +18550,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18576,20 +18578,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -18702,10 +18704,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18730,21 +18732,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -18754,7 +18756,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEntityPointer(next));
@@ -18819,10 +18821,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18849,21 +18851,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -18873,7 +18875,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Role>>(new std::list<Mber::Role>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToRole(next));
@@ -18955,10 +18957,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18985,20 +18987,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19091,10 +19093,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19119,20 +19121,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19244,10 +19246,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19272,21 +19274,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19357,10 +19359,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19385,21 +19387,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19409,7 +19411,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Role>>(new std::list<Mber::Role>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToRole(next));
@@ -19491,10 +19493,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19519,20 +19521,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19606,10 +19608,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19638,21 +19640,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         id = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19758,10 +19760,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19786,21 +19788,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19876,10 +19878,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19904,21 +19906,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -19928,7 +19930,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::SteamApplication>>(new std::list<Mber::SteamApplication>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToSteamApplication(next));
@@ -19992,10 +19994,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20022,20 +20024,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20122,10 +20124,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20152,20 +20154,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20239,10 +20241,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20269,20 +20271,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20382,10 +20384,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20414,21 +20416,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20438,7 +20440,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Build>>(new std::list<Mber::Build>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToBuild(next));
@@ -20502,10 +20504,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20534,21 +20536,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         definitionId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20666,10 +20668,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20694,20 +20696,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20832,10 +20834,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20860,21 +20862,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -20945,10 +20947,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20973,20 +20975,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21060,10 +21062,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21088,22 +21090,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         truncated = 0;
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21119,7 +21121,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::AchievementDefinition>>(new std::list<Mber::AchievementDefinition>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToAchievementDefinition(next));
@@ -21213,10 +21215,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21243,21 +21245,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         achievementInstanceId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21369,10 +21371,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21397,21 +21399,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21421,7 +21423,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EarnedAchievements>>(new std::list<Mber::EarnedAchievements>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEarnedAchievements(next));
@@ -21486,10 +21488,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21516,20 +21518,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21629,10 +21631,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21657,21 +21659,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21681,7 +21683,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::AchievementInstance>>(new std::list<Mber::AchievementInstance>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToAchievementInstance(next));
@@ -21757,10 +21759,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21789,21 +21791,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         campaignId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -21935,10 +21937,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21963,21 +21965,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -22048,10 +22050,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22076,21 +22078,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -22100,7 +22102,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Campaign>>(new std::list<Mber::Campaign>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToCampaign(next));
@@ -22186,10 +22188,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22214,20 +22216,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -22366,10 +22368,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22394,20 +22396,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -22481,10 +22483,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22511,21 +22513,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         documentId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -22657,10 +22659,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22689,21 +22691,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         definitionId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -22950,10 +22952,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22978,20 +22980,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -23232,10 +23234,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23260,21 +23262,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -23345,10 +23347,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23373,20 +23375,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -23460,10 +23462,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23488,22 +23490,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         truncated = 0;
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -23519,7 +23521,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::DigitalGoodDefinition>>(new std::list<Mber::DigitalGoodDefinition>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDigitalGoodDefinition(next));
@@ -23613,10 +23615,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23643,21 +23645,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         instanceId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -23769,10 +23771,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23799,20 +23801,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -23918,10 +23920,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23948,20 +23950,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -24061,10 +24063,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24089,21 +24091,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -24113,7 +24115,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::DigitalGoodInstance>>(new std::list<Mber::DigitalGoodInstance>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDigitalGoodInstance(next));
@@ -24225,10 +24227,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24255,20 +24257,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -24355,10 +24357,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24387,21 +24389,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -24411,7 +24413,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(next.convert<std::string>());
@@ -24497,10 +24499,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24529,21 +24531,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         documentId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -24765,10 +24767,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24793,21 +24795,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -24884,10 +24886,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24912,20 +24914,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -25205,10 +25207,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25233,20 +25235,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -25320,10 +25322,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25348,22 +25350,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -25373,7 +25375,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Document>>(new std::list<Mber::Document>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDocument(next));
@@ -25459,10 +25461,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25489,21 +25491,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         documentTemplateId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -25635,10 +25637,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25663,21 +25665,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -25748,10 +25750,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25776,21 +25778,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -25800,7 +25802,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::DocumentTemplate>>(new std::list<Mber::DocumentTemplate>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDocumentTemplate(next));
@@ -25864,10 +25866,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25892,20 +25894,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26057,10 +26059,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26085,20 +26087,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26172,10 +26174,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26202,21 +26204,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         directoryId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26341,10 +26343,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26369,21 +26371,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26454,10 +26456,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26482,20 +26484,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26627,10 +26629,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26655,20 +26657,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26742,10 +26744,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26770,21 +26772,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26794,7 +26796,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Directory>>(new std::list<Mber::Directory>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDirectory(next));
@@ -26858,10 +26860,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26888,22 +26890,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -26913,7 +26915,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Document>>(new std::list<Mber::Document>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDocument(next));
@@ -27025,10 +27027,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27055,22 +27057,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         documentId = 0;
                         url = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -27227,10 +27229,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27255,21 +27257,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         url = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -27433,10 +27435,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27461,21 +27463,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -27552,10 +27554,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27582,20 +27584,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -27708,10 +27710,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27738,21 +27740,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         bucketConfigId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -27884,10 +27886,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27912,20 +27914,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28051,10 +28053,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28079,21 +28081,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28169,10 +28171,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28197,20 +28199,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28284,10 +28286,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28314,20 +28316,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28440,10 +28442,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28468,21 +28470,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28558,10 +28560,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28586,20 +28588,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28673,10 +28675,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28703,20 +28705,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28829,10 +28831,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28859,21 +28861,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -28883,7 +28885,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::DocumentVersion>>(new std::list<Mber::DocumentVersion>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToDocumentVersion(next));
@@ -28965,10 +28967,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28995,21 +28997,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -29219,10 +29221,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29247,21 +29249,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -29332,10 +29334,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29360,20 +29362,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -29590,10 +29592,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29618,21 +29620,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -29642,7 +29644,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::CDNConfig>>(new std::list<Mber::CDNConfig>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToCDNConfig(next));
@@ -29706,10 +29708,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29734,20 +29736,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -29821,10 +29823,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29851,20 +29853,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -29964,10 +29966,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29992,20 +29994,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30105,10 +30107,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30133,21 +30135,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30157,7 +30159,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::CDNConfig>>(new std::list<Mber::CDNConfig>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToCDNConfig(next));
@@ -30233,10 +30235,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30263,20 +30265,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30389,10 +30391,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30421,21 +30423,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         providerUrl = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30528,10 +30530,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30556,23 +30558,23 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         authorization_code = 0;
                         scope = 0;
                         redirect_uri = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30735,10 +30737,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30763,22 +30765,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         mode = 0;
                         responseText = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30855,10 +30857,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30885,20 +30887,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -30998,10 +31000,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31026,20 +31028,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31113,10 +31115,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31141,21 +31143,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31226,10 +31228,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31254,21 +31256,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31278,7 +31280,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Provider>>(new std::list<Mber::Provider>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToProvider(next));
@@ -31342,10 +31344,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31374,22 +31376,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31399,7 +31401,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EventEnvelope>>(new std::list<Mber::EventEnvelope>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEventEnvelope(next));
@@ -31517,10 +31519,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31547,22 +31549,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31572,7 +31574,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EventEnvelope>>(new std::list<Mber::EventEnvelope>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEventEnvelope(next));
@@ -31670,10 +31672,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31700,22 +31702,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31725,7 +31727,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EventEnvelope>>(new std::list<Mber::EventEnvelope>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEventEnvelope(next));
@@ -31843,10 +31845,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31873,22 +31875,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -31898,7 +31900,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Count>>(new std::list<Mber::Count>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToCount(next));
@@ -32016,10 +32018,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32046,21 +32048,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -32166,10 +32168,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32196,21 +32198,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -32220,7 +32222,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::AvailableEvent>>(new std::list<Mber::AvailableEvent>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToAvailableEvent(next));
@@ -32290,10 +32292,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32320,22 +32322,22 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         truncated = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -32345,7 +32347,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Count>>(new std::list<Mber::Count>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToCount(next));
@@ -32463,10 +32465,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32495,21 +32497,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         accepted = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -32771,10 +32773,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32803,20 +32805,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -32981,10 +32983,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33013,21 +33015,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         offerId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33196,10 +33198,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33224,21 +33226,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33248,7 +33250,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Offer>>(new std::list<Mber::Offer>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToOffer(next));
@@ -33322,10 +33324,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33350,21 +33352,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33436,10 +33438,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33464,20 +33466,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33551,10 +33553,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33579,20 +33581,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33768,10 +33770,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33798,21 +33800,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         storeId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33911,10 +33913,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33939,21 +33941,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -33963,7 +33965,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Store>>(new std::list<Mber::Store>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToStore(next));
@@ -34028,10 +34030,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34056,21 +34058,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34152,10 +34154,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34180,20 +34182,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34267,10 +34269,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34295,20 +34297,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34433,10 +34435,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34463,21 +34465,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34554,10 +34556,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34582,21 +34584,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         invoice = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34708,10 +34710,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34738,20 +34740,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34838,10 +34840,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34868,21 +34870,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -34892,7 +34894,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Invoice>>(new std::list<Mber::Invoice>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToInvoice(next));
@@ -34982,10 +34984,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35012,21 +35014,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35036,7 +35038,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Invoice>>(new std::list<Mber::Invoice>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToInvoice(next));
@@ -35125,10 +35127,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35155,21 +35157,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35246,10 +35248,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35276,21 +35278,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         virtualCurrencyId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35396,10 +35398,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35424,21 +35426,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35448,7 +35450,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::VirtualCurrency>>(new std::list<Mber::VirtualCurrency>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToVirtualCurrency(next));
@@ -35524,10 +35526,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35552,21 +35554,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35637,10 +35639,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35665,20 +35667,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35817,10 +35819,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35845,20 +35847,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -35932,10 +35934,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35962,21 +35964,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         lotId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36082,10 +36084,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36110,21 +36112,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36207,10 +36209,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36235,20 +36237,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36361,10 +36363,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36389,21 +36391,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36413,7 +36415,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::WalletLot>>(new std::list<Mber::WalletLot>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToWalletLot(next));
@@ -36484,10 +36486,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36514,21 +36516,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36610,10 +36612,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36640,20 +36642,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36766,10 +36768,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36796,21 +36798,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -36820,7 +36822,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::EntityPointer>>(new std::list<Mber::EntityPointer>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToEntityPointer(next));
@@ -36890,10 +36892,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36918,20 +36920,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37030,10 +37032,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37060,21 +37062,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         providerId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37232,10 +37234,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37260,21 +37262,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37350,10 +37352,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37378,21 +37380,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37402,7 +37404,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::PaymentProvider>>(new std::list<Mber::PaymentProvider>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToPaymentProvider(next));
@@ -37472,10 +37474,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37500,20 +37502,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37587,10 +37589,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37617,20 +37619,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37717,10 +37719,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37745,20 +37747,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37845,10 +37847,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37875,21 +37877,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         affiliateId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -37982,10 +37984,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38010,21 +38012,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38095,10 +38097,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38123,21 +38125,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38243,10 +38245,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38271,20 +38273,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38358,10 +38360,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38386,21 +38388,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38410,7 +38412,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Affiliate>>(new std::list<Mber::Affiliate>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToAffiliate(next));
@@ -38474,10 +38476,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38504,21 +38506,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38528,7 +38530,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::ReferralCount>>(new std::list<Mber::ReferralCount>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToReferralCount(next));
@@ -38598,10 +38600,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38628,21 +38630,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38652,7 +38654,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::ReferralEntityTotals>>(new std::list<Mber::ReferralEntityTotals>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToReferralEntityTotals(next));
@@ -38722,10 +38724,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38754,20 +38756,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -38893,10 +38895,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38923,21 +38925,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         serverId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -39082,10 +39084,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39110,21 +39112,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -39195,10 +39197,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39223,20 +39225,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -39427,10 +39429,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39455,20 +39457,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -39542,10 +39544,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39570,21 +39572,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -39594,7 +39596,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Server>>(new std::list<Mber::Server>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToServer(next));
@@ -39742,10 +39744,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39772,21 +39774,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         lobbyId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -39898,10 +39900,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39926,21 +39928,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40016,10 +40018,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40044,20 +40046,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40182,10 +40184,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40210,20 +40212,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40297,10 +40299,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40325,21 +40327,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40349,7 +40351,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Lobby>>(new std::list<Mber::Lobby>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToLobby(next));
@@ -40419,10 +40421,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40449,21 +40451,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40473,7 +40475,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<std::string>>(new std::list<std::string>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(next.convert<std::string>());
@@ -40537,10 +40539,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40565,20 +40567,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40697,10 +40699,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40729,20 +40731,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -40886,10 +40888,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40916,20 +40918,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41016,10 +41018,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41044,20 +41046,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41131,10 +41133,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41161,20 +41163,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41339,10 +41341,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41367,20 +41369,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41454,10 +41456,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41482,21 +41484,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41567,10 +41569,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41599,21 +41601,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         groupId = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41732,10 +41734,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41760,21 +41762,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         result = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41850,10 +41852,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41878,21 +41880,21 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         results = 0;
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -41902,7 +41904,7 @@ namespace Mber{
                         next = obj->get("results");
                         if( !next.isEmpty() ){
                             results = Mber::MberPtr<std::list<Mber::Group>>(new std::list<Mber::Group>);
-                            Array::Ptr nextArray = next.extract<Array::Ptr>();
+                            Poco::JSON::Array::Ptr nextArray = next.extract<Poco::JSON::Array::Ptr>();
                             for( int i=0; i<nextArray->size(); i++ ){
                                 next = nextArray->get(i);
                                 results->push_back(jsonToGroup(next));
@@ -41990,10 +41992,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -42018,20 +42020,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -42156,10 +42158,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -42184,20 +42186,20 @@ namespace Mber{
                 Response::~Response(){};
                 class ResponseError : public Response{
                     public:
-                    virtual ResponseError::~ResponseError(){};
-                    ResponseError::ResponseError(const Status& someStatus, const std::string& someError){
+                    virtual ~ResponseError(){};
+                    ResponseError(const Status& someStatus, const std::string& someError){
                       status = someStatus;
                       errorMessage = someError;
                     }
                 };
                 class ResponseImpl : public Response{
                     public:
-                    virtual ResponseImpl::~ResponseImpl(){};
-                    ResponseImpl::ResponseImpl(Object::Ptr obj){
+                    virtual ~ResponseImpl(){};
+                    ResponseImpl(Object::Ptr obj){
                         errorResult = 0;
                         
                         Var next;
-                        bool empty = false;
+                        // bool empty = false;
                         
                         next = obj->get("status");
                         if( !next.isEmpty() ){
@@ -42271,10 +42273,10 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        DefaultHandler handler;
+                        ParseHandler handler;
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.result().extract<Object::Ptr>();
+                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
