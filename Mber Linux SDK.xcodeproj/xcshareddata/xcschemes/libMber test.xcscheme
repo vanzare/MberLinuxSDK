@@ -42,6 +42,13 @@
       <PathRunnable
          FilePath = "/Users/jsg/code/GitHub/MberLinuxSDK/test">
       </PathRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "MBER_URL"
+            value = "http://dev.office.firepub.net"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
