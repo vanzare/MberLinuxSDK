@@ -21,13 +21,8 @@ namespace
 			return Poco::JSON::Object::Ptr();
 		}
 
-		Poco::JSON::Parser parser;
-		Poco::JSON::ParseHandler handler;
-		parser.setHandler(&handler);
-		parser.parse(json);
-		
-		const Poco::Dynamic::Var result = handler.asVar();
-		return result.extract<Poco::JSON::Object::Ptr>();
+        Poco::JSON::Parser parser;
+		return parser.parse(json).extract<Poco::JSON::Object::Ptr>();
 	}
 
 	Poco::JSON::Object::Ptr toJSONObject(const char* const json)
