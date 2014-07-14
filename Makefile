@@ -9,7 +9,7 @@ RM=/bin/rm -f
 
 CFLAGS = -fPIC -g -w -fmax-errors=1 -Wfatal-errors #-Wall -Wextra -O2 
 CXXFLAGS+= -std=gnu++0x -fPIC -g -w
-LDFLAGS = -shared -Lcpp/poco-1.5.3-all/lib/Linux/x86_64
+LDFLAGS = -shared -Lcpp/poco-1.5.3-all/lib/Darwin/x86_64
 TARGET_LIB = libMber.so 
 INCLUDES= -I. -Icpp/generated/include -Icpp/src -Icpp/poco-1.5.3-all/Foundation/include -Icpp/poco-1.5.3-all/Net/include -Icpp/poco-1.5.3-all/JSON/include -Icpp/poco-1.5.3-all/NetSSL_OpenSSL/include -Icpp/poco-1.5.3-all/Crypto/include -Icpp/poco-1.5.3-all/Util/include
 CPPFLAGS+=$(INCLUDES) 
@@ -29,7 +29,7 @@ $(TARGET_LIB): $(OBJS)
 
 test:	CXXFLAGS=-std=gnu++0x -g -w -fpermissive 
 test:	INCLUDES+= -Icpp/test
-test:	LDFLAGS= -L. -Lcpp/poco-1.5.3-all/lib/Linux/x86_64
+test:	LDFLAGS= -L. -Lcpp/poco-1.5.3-all/lib/Darwin/x86_64
 test:	LIBS+= -lMber -pthread
 test:	$(TARGET_LIB) $(TEST_OBJS)
 	$(LINK.cpp) $(INCLUDES) ${LDFLAGS} $^ $(LIBS) -o $@
