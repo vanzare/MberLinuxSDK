@@ -26,3 +26,8 @@ DerivedData
 *.xcuserstate
 *.xccheckout
 *.dSYM
+
+cpp/poco-1.5.3-all/PageCompiler/bin/Darwin/x86_64/cpspc
+cpp/poco-1.5.3-all/PageCompiler/bin/Darwin/x86_64/cpspcd
+cpp/poco-1.5.3-all/PageCompiler/File2Page/bin/Darwin/x86_64/f2cpsp
+cpp/poco-1.5.3-all/PageCompiler/File2Page/bin/Darwin/x86_64/f2cpspd
