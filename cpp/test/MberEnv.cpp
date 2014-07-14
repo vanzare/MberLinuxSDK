@@ -19,7 +19,7 @@ namespace
 		const char* const value = getenv(key);
 		if (value) {
 			result = value;
-			free(value);
+			free((void*)value); // TODO: double-check this force cast
 		}
 #endif
 		return result;
