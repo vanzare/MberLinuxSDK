@@ -22,14 +22,13 @@ The actual Mber code is in ```generated``` and ```src```. The rest is due for cl
     
 
 ##### Building and running the (broken) test target #####
-The ```test``` binary starts running and then fails with a SIGABRT. Needs
-debugging.
+The ```test``` binary should work (with failed tests) now on Ubuntu 12.04. Update MberEnv.cpp with passwords and set your MBER_URL env variable to CI to use it. Passwords for MberEnv.cpp can be found in the following private repo pull request: https://github.com/FirePub/platform/pull/1135/files
 
     make clean
     make -j
     make -j test
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:./cpp/poco-1.5.3-all/lib/Linux/x86_64
     ./test
-    
+
 
     
