@@ -10548,10 +10548,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -10666,10 +10663,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -10787,10 +10781,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11006,10 +10997,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11121,10 +11109,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11255,10 +11240,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11372,10 +11354,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11487,10 +11466,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11615,10 +11591,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11739,10 +11712,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -11945,10 +11915,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12073,10 +12040,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12210,10 +12174,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12328,10 +12289,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12472,10 +12430,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12600,10 +12555,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12715,10 +12667,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12843,10 +12792,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -12961,10 +12907,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13104,10 +13047,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13232,10 +13172,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13362,10 +13299,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13477,10 +13411,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13661,10 +13592,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13804,10 +13732,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -13932,10 +13857,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14062,10 +13984,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14192,10 +14111,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14335,10 +14251,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14478,10 +14391,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14619,10 +14529,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14745,10 +14652,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14872,10 +14776,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -14987,10 +14888,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15191,10 +15089,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15384,10 +15279,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15506,10 +15398,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15621,10 +15510,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15734,10 +15620,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -15877,10 +15760,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16124,10 +16004,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16429,10 +16306,14 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
+                        /*
+                         ParseHandler handler; // TODO: verify this replacement is accurate
                         jsonParser.setHandler(&handler);
                         jsonParser.parse(jsonRsp);
                         Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                         */
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
+                        
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16658,10 +16539,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16816,10 +16694,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -16929,10 +16804,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17045,10 +16917,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17237,10 +17106,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17352,10 +17218,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17476,10 +17339,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17604,10 +17464,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17820,10 +17677,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -17933,10 +17787,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18061,10 +17912,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18279,10 +18127,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18394,10 +18239,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18550,10 +18392,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18704,10 +18543,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18821,10 +18657,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -18957,10 +18790,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19093,10 +18923,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19246,10 +19073,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19359,10 +19183,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19493,10 +19314,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19608,10 +19426,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19760,10 +19575,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19878,10 +19690,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -19994,10 +19803,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20124,10 +19930,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20241,10 +20044,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20384,10 +20184,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20504,10 +20301,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20668,10 +20462,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20834,10 +20625,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -20947,10 +20735,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21062,10 +20847,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21215,10 +20997,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21371,10 +21150,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21488,10 +21264,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21631,10 +21404,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21759,10 +21529,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -21937,10 +21704,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22050,10 +21814,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22188,10 +21949,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22368,10 +22126,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22483,10 +22238,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22659,10 +22411,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -22952,10 +22701,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23234,10 +22980,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23347,10 +23090,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23462,10 +23202,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23615,10 +23352,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23771,10 +23505,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -23920,10 +23651,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24063,10 +23791,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24227,10 +23952,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24357,10 +24079,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24499,10 +24218,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24767,10 +24483,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -24886,10 +24599,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25207,10 +24917,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25322,10 +25029,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25461,10 +25165,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25637,10 +25338,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25750,10 +25448,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -25866,10 +25561,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26059,10 +25751,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26174,10 +25863,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26343,10 +26029,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26456,10 +26139,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26629,10 +26309,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26744,10 +26421,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -26860,10 +26534,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27027,10 +26698,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27229,10 +26897,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27435,10 +27100,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27554,10 +27216,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27710,10 +27369,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -27886,10 +27542,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28053,10 +27706,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28171,10 +27821,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28286,10 +27933,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28442,10 +28086,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28560,10 +28201,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28675,10 +28313,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28831,10 +28466,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -28967,10 +28599,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29221,10 +28850,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29334,10 +28960,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29592,10 +29215,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29708,10 +29328,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29823,10 +29440,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -29966,10 +29580,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30107,10 +29718,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30235,10 +29843,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30391,10 +29996,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30530,10 +30132,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30737,10 +30336,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -30857,10 +30453,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31000,10 +30593,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31115,10 +30705,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31228,10 +30815,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31344,10 +30928,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31519,10 +31100,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31672,10 +31250,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -31845,10 +31420,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32018,10 +31590,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32168,10 +31737,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32292,10 +31858,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32465,10 +32028,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32773,10 +32333,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -32983,10 +32540,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33198,10 +32752,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33324,10 +32875,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33438,10 +32986,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33553,10 +33098,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33770,10 +33312,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -33913,10 +33452,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34030,10 +33566,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34154,10 +33687,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34269,10 +33799,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34435,10 +33962,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34556,10 +34080,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34710,10 +34231,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34840,10 +34358,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -34984,10 +34499,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35127,10 +34639,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35248,10 +34757,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35398,10 +34904,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35526,10 +35029,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35639,10 +35139,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35819,10 +35316,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -35934,10 +35428,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36084,10 +35575,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36209,10 +35697,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36363,10 +35848,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36486,10 +35968,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36612,10 +36091,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36768,10 +36244,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -36892,10 +36365,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37032,10 +36502,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37234,10 +36701,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37352,10 +36816,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37474,10 +36935,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37589,10 +37047,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37719,10 +37174,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37847,10 +37299,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -37984,10 +37433,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38097,10 +37543,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38245,10 +37688,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38360,10 +37800,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38476,10 +37913,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38600,10 +38034,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38724,10 +38155,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -38895,10 +38323,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39084,10 +38509,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39197,10 +38619,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39429,10 +38848,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39544,10 +38960,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39744,10 +39157,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -39900,10 +39310,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40018,10 +39425,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40184,10 +39588,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40299,10 +39700,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40421,10 +39819,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40539,10 +39934,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40699,10 +40091,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -40888,10 +40277,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41018,10 +40404,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41133,10 +40516,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41341,10 +40721,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41456,10 +40833,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41569,10 +40943,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41734,10 +41105,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41852,10 +41220,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -41992,10 +41357,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -42158,10 +41520,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
@@ -42273,10 +41632,7 @@ namespace Mber{
                         StreamCopier::copyStream(rs, ostr);
                         jsonRsp = ostr.str();
                         Parser jsonParser;
-                        ParseHandler handler;
-                        jsonParser.setHandler(&handler);
-                        jsonParser.parse(jsonRsp);
-                        Object::Ptr rspJson = handler.asVar().extract<Object::Ptr>();
+                        Object::Ptr rspJson = jsonParser.parse(jsonRsp).extract<Object::Ptr>();
 
                         if (!rspJson.isNull() && !rspJson->has("status")) {
                             return MberPtr<Response>( new ResponseError(Status_Failed, jsonRsp) );
